@@ -1,0 +1,566 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --orange: rgb(198, 101, 11);
+    --beige: rgb(223, 178, 88);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s all linear;
+}
+
+.logoNav img {
+    height: 90px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin-top: 10px;
+}
+
+nav ul li a {
+    margin: 10px;
+    font-size: 24px;
+    font-family: "Oleo Script", system-ui;
+    font-weight: 300;
+    font-style: normal;
+    padding: 14px;
+    /* color: rgb(255, 255, 255); */
+    /* color: rgb(12, 169, 169); */
+    color: var(--beige);
+}
+
+nav ul li a:hover {
+    color: var(--orange);
+    transition: 0.3s all linear;
+}
+
+.listContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    align-items: center;
+}
+
+.listContainer ul:nth-child(2) li a {
+    margin-right: 4px;
+}
+
+header {
+    background: linear-gradient(rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.672)), url(../IMG/homeheader.jpg) center/cover no-repeat;
+    padding-bottom: 30px;
+}
+
+#headerContainer h1 {
+    color: var(--beige);
+    font-family: "Oleo Script", system-ui;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 35px;
+}
+
+#headerContainer p {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+#headerContainer {
+    max-width: 1250px;
+    margin: auto;
+    text-align: left;
+    padding: 20px 10px;
+    display: flex;
+    align-items: center;
+}
+
+
+.btnTeal {
+    background-color: rgb(12, 169, 169);
+    color: white;
+}
+
+.btnWhite {
+    background-color: white;
+    color: rgb(12, 169, 169);
+}
+
+.btn {
+    padding: 9px 20px;
+    display: inline-block;
+    border-radius: 10px;
+    font-size: 22px;
+    margin-top: 10px;
+    font-family: "Oleo Script", system-ui;
+    font-weight: 100;
+    font-style: normal;
+    letter-spacing: 1px;
+    margin-right: 5px;
+    transition: 0.3s all linear;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.logoHeader {
+    padding: 20px;
+}
+
+.logoHeader img {
+    padding: 20px;
+    height: 300px;
+}
+
+.btnOrange {
+    background-color: rgb(164, 84, 34);
+    font-size: 22px;
+    border-radius: 10px;
+    color: white;
+    padding: 10px 20px;
+}
+
+
+.btnOrange:hover {
+    color: white;
+    background-color: rgb(132, 59, 14);
+    opacity: 0.8;
+}
+
+.btnBeige {
+    background-color: var(--beige);
+    font-size: 22px;
+    border-radius: 10px;
+    color: white;
+    padding: 10px 20px;
+}
+
+.btnBeige:hover {
+    background-color: var(--beige);
+    color: white;
+    opacity: 0.8;
+}
+
+.foodTruckGrid {
+    width: 370px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: 0.3s all linear;
+}
+
+.foodTruckGrid:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.foodTruckGrid .foodTruckImg {
+    height: 200px;
+    width: 100%;
+}
+
+.foodTruckGrid .foodTruckImg img {
+    width: 100%;
+    height: 100%;
+}
+
+.foodTruckGrid {
+    display: flex;
+    flex-direction: column;
+}
+
+.foodTruckContent {
+    padding: 0 10px;
+    background-color: white;
+}
+
+.foodTruckContent h3 {
+    font-family: "Oleo Script", system-ui;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 24px;
+}
+
+.rating {
+    background-color: rgb(93, 152, 4);
+    border-radius: 10px;
+    padding: 6px 10px;
+    color: white;
+    font-size: 14px;
+}
+
+.rating i {
+    font-size: 11px;
+}
+
+.truckGridLocation p {
+    font-size: 18px;
+}
+
+.truckGridLocation i {
+    font-size: 22px;
+    margin-right: 8px;
+}
+
+.truckGridLocation {
+    color: #333;
+    margin: 3px;
+}
+
+.gridTags p {
+    background-color: brown;
+    display: inline-block;
+    padding: 9px 13px;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.gridTags {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 10px;
+}
+
+#searchBar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+#searchBar form {
+    background-color: white;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+#searchBar input {
+    width: 600px;
+    font-size: 18px;
+    padding: 4px;
+    color: rgb(66, 66, 66);
+    border: none;
+    letter-spacing: 2px;
+    padding-left: 9px;
+}
+
+#searchBar input:focus {
+    outline: none;
+}
+
+#searchBar input::placeholder {
+    color: #b0adad;
+}
+
+#searchBar .searchIcon {
+    width: 40px;
+    color: gray;
+    display: grid;
+    justify-content: center;
+    background-color: white;
+    font-size: 20px;
+}
+
+.foodTruckImg {
+    position: relative;
+}
+
+.dealOfTheDay {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.899)60%, rgba(0, 0, 0, 0.862), rgba(0, 0, 0, 0.673), rgba(0, 0, 0, 0))15%;
+    position: absolute;
+    top: 70%;
+    padding: 8px 15px;
+    padding-right: 30px;
+    color: gold;
+    letter-spacing: 3px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 15px;
+}
+
+.dealOfTheDayNone {
+    display: none;
+}
+
+.dealsContainer {
+    background: linear-gradient(rgb(255, 255, 255), rgba(0, 0, 0, 0.672)), url(https://images.pexels.com/photos/3023476/pexels-photo-3023476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1) no-repeat center/cover;
+    padding-bottom: 25px;
+}
+
+/* Footer */
+.footer {
+    display: flex;
+    padding: 40px 20px;
+    background-color: gainsboro;
+    color: rgb(132, 131, 131);
+}
+
+.footer h3 {
+    color: #242424;
+    text-transform: uppercase;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 22px;
+    letter-spacing: 2px;
+}
+
+.footer>div {
+    width: 33%;
+}
+
+.footerList ul li a,
+.footerCopyright {
+    color: #555555;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.footerList ul li a:hover {
+    color: var(--orange);
+    transition: 0.3s all linear;
+}
+
+.footerList ul li {
+    padding: 3px;
+}
+
+.footerCopyright {
+    background-color: gainsboro;
+    ;
+    padding: 0 20px;
+}
+
+.footerCopyright p {
+    max-width: 1200px;
+    margin: auto;
+    padding-bottom: 30px;
+    border-top: 1px solid gray;
+    padding-top: 20px;
+}
+
+
+.icons {
+    display: none;
+}
+
+
+.closeNavBar {
+    display: none;
+}
+
+.responsiveOpenBtn {
+    display: none;
+}
+
+@media screen and (max-width:800px) {
+
+    .responsiveNavbar {
+        background-color: rgb(255, 255, 255);
+        height: 100vh;
+        position: fixed;
+        z-index: 2;
+        top: 0;
+        width: 320px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        left: -320px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        transition: 0.3s all linear;
+    }
+
+    .openNavbar {
+        left: 0px;
+    }
+
+    .responsiveNavbar .listContainer ul,
+    .responsiveNavbar .listContainer {
+        flex-direction: column;
+    }
+
+    .responsiveNavbar .logoNav img {
+        width: 200px;
+        height: 120px;
+        margin-bottom: 30px;
+    }
+
+
+    .responsiveNavbar .listContainer ul {
+        margin-bottom: 10px;
+    }
+
+    .responsiveNavbar .navBtns li {
+        margin-bottom: 30px;
+    }
+
+    .responsiveNavbar .closeNavBar {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 25px;
+        margin: 20px;
+        color: red;
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
+    }
+
+    .responsiveOpenBtn {
+        right: 0;
+        position: absolute;
+        margin: 30px;
+        cursor: pointer;
+        font-size: 33px;
+        color: var(--orange);
+        background-color: transparent;
+        border: none;
+        transition: 0.3s all linear;
+        display: block;
+    }
+
+    .responsiveOpenBtn:hover {
+        color: var(--beige);
+    }
+
+    .responsiveNavbar .icons {
+        display: flex;
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 20px;
+    }
+
+    .responsiveNavbar .icons a {
+        color: var(--orange);
+        margin: 10px;
+        font-size: 24px;
+    }
+
+    #headerContainer {
+        flex-direction: column;
+        padding: 40px;
+    }
+
+    #headerContainer h1 {
+        font-size: 26px;
+    }
+
+    #headerContainer p {
+        font-size: 17px;
+    }
+
+    .logoHeader img {
+        padding: 10px;
+        height: 180px;
+    }
+
+    #searchBar input {
+        width: 440px;
+    }
+
+    /* Food truck grid responsive */
+    .foodTruckGrid {
+        width: 320px;
+    }
+
+
+    /* Footer Responsive */
+    .footer {
+        flex-direction: column;
+    }
+
+    .footer>div {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width:1150px) {
+
+    /* Food truck grid responsive */
+    .foodTruckGrid {
+        width: 400px;
+    }
+}
+@media screen and (max-width:895px) {
+
+    /* Food truck grid responsive */
+    .foodTruckGrid {
+        width: 100%;
+    }
+    .foodTruckGrid .foodTruckImg {
+        height: 300px;
+        width: 100%;
+    }
+
+}
+@media screen and (max-width:290px) {
+
+    /* Food truck grid responsive */
+    .foodTruckGrid {
+        width: 240px;
+        overflow: hidden;
+    }
+    .foodTruckGrid .foodTruckImg {
+        height: 300px;
+        width: 100%;
+    }
+   
+}
+
+
+
+@media screen and (max-width:480px) {
+    #searchBar input {
+        width: 320px;
+    }
+}
+
+@media screen and (max-width:401px) {
+    #searchBar input {
+        width: 220px;
+    }
+}
+
+@media screen and (max-width:290px) {
+
+    /* Food truck grid responsive */
+    .foodTruckGrid {
+        width: 240px;
+        overflow: hidden;
+    }
+    .foodTruckGrid .foodTruckImg {
+        height: 300px;
+        width: 100%;
+    }
+    #searchBar input {
+        width: 200px;
+    }
+}
