@@ -1,0 +1,27 @@
+#dashboardNav {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 25px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    align-items: center;
+}
+
+#dashboardNav img {
+    width: 80px;
+}
+
+#dashboardNav ul li {
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #333;
+}
+
+#dashboardNav ul li i {
+    font-size: 22px;
+    color: var(--orange);
+    margin-left: 15px;
+
+}
