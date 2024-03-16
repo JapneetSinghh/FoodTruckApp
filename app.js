@@ -7,26 +7,27 @@ const app = express();
 const path = require('path');
 
 // Serving the public folder as static
-app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Adding body parser
 const bodyParse = require('body-parser');
-app.use(bodyParse.urlencoded({extended:false}));
+app.use(bodyParse.urlencoded({ extended: false }));
 
 // Setting up the ejs template engine
-app.set('view engine','ejs');
-app.set('views','Views')
+app.set('view engine', 'ejs');
+app.set('views', 'Views')
 
 
 // Importing the routers
-const homeRoutes= require('./Routes/home')
+const homeRoutes = require('./Routes/home')
+const authRoutes = require('./Routes/auth')
+const dashboardRoutes = require('./Routes/dashboard')
+
 app.use(homeRoutes.router);
-
-
-
-
+app.use(authRoutes.router);
+app.use(dashboardRoutes.router);
 
 console.log('Testing');
-app.listen(3000,()=>{
+app.listen(3000, () => {
     console.log('Listening on port 3000');
 })

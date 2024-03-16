@@ -33,7 +33,7 @@ color: #494949;
 }
 
 .headingDescription{
-  font-size: 21px;
+  font-size: 18px;
 }
 
 .container{
@@ -61,4 +61,106 @@ color: #494949;
 }
 .justifyCenter{
   justify-content: center;
+}
+
+/* Buttons */
+.btnOrange {
+  background-color: rgb(164, 84, 34);
+  font-size: 22px;
+  border-radius: 10px;
+  color: white;
+  padding: 10px 20px;
+}
+
+
+.btnOrange:hover {
+  color: white;
+  background-color: rgb(132, 59, 14);
+  opacity: 0.8;
+}
+
+.btnBeige {
+  background-color: var(--beige);
+  font-size: 22px;
+  border-radius: 10px;
+  color: white;
+  padding: 10px 20px;
+}
+
+.btnBeige:hover {
+  background-color: var(--beige);
+  color: white;
+  opacity: 0.8;
+}
+
+.btnTeal {
+  background-color: rgb(12, 169, 169);
+  color: white;
+}
+
+.btnWhite {
+  background-color: white;
+  color: rgb(12, 169, 169);
+}
+
+.btn {
+  padding: 9px 20px;
+  display: inline-block;
+  border-radius: 10px;
+  font-size: 22px;
+  margin-top: 10px;
+  font-family: "Oleo Script", system-ui;
+  font-weight: 100;
+  font-style: normal;
+  letter-spacing: 1px;
+  margin-right: 5px;
+  transition: 0.3s all linear;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btnGreen{
+  background-color: rgb(11, 136, 0);
+  color: white;
+  padding:12px 23px;
+}
+#submitButton{
+  margin: 20px 0;
+  padding: 10px;
+  font-size: 18px;
+  width: 100%;
+  display: inline-block;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: 0.3s all linear;
+}
+
+#submitButton:hover{
+  background-color: var(--beige);
+}
+
+.error{
+  background-color: red;
+  font-size: 16px;
+  color: white;
+  width: 100%;
+  padding: 8px;
+  text-align: center;
+  letter-spacing: 1px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  margin:0 10px ;
+}
+
+p{
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 14px;
 }

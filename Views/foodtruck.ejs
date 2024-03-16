@@ -1,0 +1,124 @@
+<!-- Page Start HTML -->
+<%- include('./homeIncludes/header.ejs') %>
+    <!-- <section id="foodTruckNav" style="padding: 10px;">
+        <a href="/"><img style="width: 150px;" src="/img/logo.png" alt=""></a> -->
+
+    <!-- Search Bar -->
+    <!-- <div class="listContainer">
+                <ul class="navBtns">
+                    <li><a class="btnOrange" href="/signup">Add Your Food Truck</a></li>
+                    <li><a class="btnBeige" href="/login">Login</a></li>
+                </ul>
+            </div>
+    </section> -->
+
+    <!-- Navbar -->
+    <button class="responsiveOpenBtn"><i class="fa-solid fa-bars"></i></button>
+    <nav id="navbar" class="responsiveNavbar">
+        <div class="listContainer foodTruckNav">
+            <!-- <ul class="">
+            <li><a href="/about">About TOW</a></li>
+            <li><a href="/foodTrucks">Food Trucks</a></li>
+        </ul> -->
+            <ul>
+                <div class="logoNav"><a href="/"><img src="/img/logo.png" alt=""></a></div>
+            </ul>
+            <ul>
+                <!-- Search Bar -->
+                <div class="foodTruckPageSearch">
+                    <%- include('./homeIncludes/searchBar.ejs') %>
+                </div>
+            </ul>
+            <ul class="navBtns">
+                <li><a class="btnOrange" href="/signup">Add Your Food Truck</a></li>
+                <li><a class="btnBeige" href="/login">Login</a></li>
+            </ul>
+        </div>
+        <div class="icons">
+            <a href=""> <i class="fa-brands fa-instagram"></i> </a>
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+            <a href=""><i class="fa-brands fa-x-twitter"></i></a>
+            <a href=""> <i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <div>
+            <button class="closeNavBar"> <i class="fa-solid fa-arrow-left"></i></button>
+        </div>
+    </nav>
+    <section class="container" style="padding-bottom: 0;">
+        <div style="margin:0 8px;">
+            <h1 class="heading">The Orabella </h1>
+            <p style="font-size: 18px; letter-spacing: 2px;"> <i style="color:  rgb(223, 178, 88);"  class="fa-solid fa-location-dot"></i> 43, Fairway Road, Kitchener</p>
+        </div>
+    </section>
+    <section id="foodTruckPageHeader" class="container" style="padding-bottom: 0;">
+        <div id="foodTruckImage" style="margin-left: 0;">
+            <img  src="/img/homeHeader.jpg" alt="">
+        </div>
+        <div id="getDirections" style="margin-right: 0;">
+            <button class="btnGreen btn"
+                style="border: none; background: none; background-color: rgb(93, 155, 1); cursor: pointer; font-size: 24px;"
+                id="getDirectionsBtn">
+                <i class="fa-solid fa-location-dot"></i> Get Directions
+            </button>
+        </div>
+    </section>
+    <section class="container" id="gallerySmall">
+        <div>
+            <img  src="/img/homeHeader.jpg" alt="">
+        </div>
+        <div>
+            <img  src="/img/homeHeader.jpg" alt="">
+        </div>
+        <div>
+            <img  src="/img/homeHeader.jpg" alt="">
+        </div>
+        <div>
+            <img  src="/img/homeHeader.jpg" alt="">
+        </div>
+        <div>
+            <img  src="/img/homeHeader.jpg" alt="">
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <%- include('./homeIncludes/footer.ejs') %>
+
+
+        <script>
+            // Add event listener to the button
+            const restaurantAddress = 'Competition Gurukul, Janakpuri'; // Replace with actual restaurant address
+
+            document.getElementById('getDirectionsBtn').addEventListener('click', () => {
+                if ("geolocation" in navigator) {
+                    // Get the user's current location
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        // Get the latitude and longitude from the position object
+                        var latitude = position.coords.latitude;
+                        var longitude = position.coords.longitude;
+
+                        // Do something with the latitude and longitude values
+                        console.log("Latitude:", latitude);
+                        console.log("Longitude:", longitude);
+
+                        // const url = `https://www.google.com/maps/place/${restaurantAddress}`;
+                        const url = `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${restaurantAddress}`;
+
+                        window.location.href = url;
+
+
+                    }, function (error) {
+                        // Handle any errors that occur while retrieving the user's location
+                        console.error("Error getting user's location:", error);
+                        // const url = `https://www.google.com/maps/place/${restaurantAddress}`;
+                        // window.location.href = url;
+                        alert("Could not find your location, please check your browser location permissions and refresh the page.")
+                    });
+                } else {
+                    // Geolocation is not supported by the browser
+                    console.error("Geolocation is not supported by this browser.");
+                }
+            });
+        </script>
+
+        <!-- Page Ends  -->
+        <%- include('./homeIncludes/pageEnd.ejs') %>

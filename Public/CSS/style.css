@@ -90,33 +90,7 @@ header {
 }
 
 
-.btnTeal {
-    background-color: rgb(12, 169, 169);
-    color: white;
-}
 
-.btnWhite {
-    background-color: white;
-    color: rgb(12, 169, 169);
-}
-
-.btn {
-    padding: 9px 20px;
-    display: inline-block;
-    border-radius: 10px;
-    font-size: 22px;
-    margin-top: 10px;
-    font-family: "Oleo Script", system-ui;
-    font-weight: 100;
-    font-style: normal;
-    letter-spacing: 1px;
-    margin-right: 5px;
-    transition: 0.3s all linear;
-}
-
-.btn:hover {
-    opacity: 0.8;
-}
 
 .logoHeader {
     padding: 20px;
@@ -127,34 +101,7 @@ header {
     height: 300px;
 }
 
-.btnOrange {
-    background-color: rgb(164, 84, 34);
-    font-size: 22px;
-    border-radius: 10px;
-    color: white;
-    padding: 10px 20px;
-}
 
-
-.btnOrange:hover {
-    color: white;
-    background-color: rgb(132, 59, 14);
-    opacity: 0.8;
-}
-
-.btnBeige {
-    background-color: var(--beige);
-    font-size: 22px;
-    border-radius: 10px;
-    color: white;
-    padding: 10px 20px;
-}
-
-.btnBeige:hover {
-    background-color: var(--beige);
-    color: white;
-    opacity: 0.8;
-}
 
 .foodTruckGrid {
     width: 370px;
@@ -209,7 +156,7 @@ header {
 }
 
 .truckGridLocation p {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .truckGridLocation i {
@@ -254,6 +201,8 @@ header {
     background-color: white;
     padding: 10px;
     border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 }
 
 #searchBar input {
@@ -379,7 +328,7 @@ header {
     display: none;
 }
 
-@media screen and (max-width:800px) {
+@media screen and (max-width:1050px) {
 
     .responsiveNavbar {
         background-color: rgb(255, 255, 255);
@@ -509,18 +458,21 @@ header {
         width: 400px;
     }
 }
+
 @media screen and (max-width:895px) {
 
     /* Food truck grid responsive */
     .foodTruckGrid {
         width: 100%;
     }
+
     .foodTruckGrid .foodTruckImg {
         height: 300px;
         width: 100%;
     }
 
 }
+
 @media screen and (max-width:290px) {
 
     /* Food truck grid responsive */
@@ -528,14 +480,13 @@ header {
         width: 240px;
         overflow: hidden;
     }
+
     .foodTruckGrid .foodTruckImg {
         height: 300px;
         width: 100%;
     }
-   
+
 }
-
-
 
 @media screen and (max-width:480px) {
     #searchBar input {
@@ -556,11 +507,122 @@ header {
         width: 240px;
         overflow: hidden;
     }
+
     .foodTruckGrid .foodTruckImg {
         height: 300px;
         width: 100%;
     }
+
     #searchBar input {
         width: 200px;
     }
 }
+
+
+/* Food Truck Page */
+.foodTruckPageSearch #searchBar input {
+    width: 300px;
+}
+
+.foodTruckPageSearch #searchBar {
+    padding: 0;
+}
+
+.foodTruckNav {
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+/* food Truck Page Header */
+#foodTruckPageHeader {
+    display: flex;
+    /* height: 450px; */
+
+}
+
+#foodTruckPageHeader>div {
+    background-color: #333;
+}
+
+#foodTruckImage {
+    width: 65%;
+    height: 450px;
+    overflow: hidden;
+}
+
+#foodTruckImage img {
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+}
+
+#getDirections {
+    width: 35%;
+    display: grid;
+    place-items: center;
+    background: url(../img/directions.jpg) no-repeat center center/cover;
+}
+
+#foodTruckPageHeader>div {
+    margin:0 4px;
+}
+
+@media screen and (max-width:1050px) {
+    .foodTruckPageSearch #searchBar input {
+        width: 200px;
+    }
+
+    #foodTruckPageHeader {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+    }
+
+    #foodTruckPageHeader.container {
+        padding: 16px;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    #foodTruckPageHeader>div {
+        margin: 0px;
+        margin-bottom: 13px;
+    }
+
+    #foodTruckImage {
+        width: 100%;
+        height: 300px;
+    }
+
+    #getDirections {
+        width: 100%;
+        height: 200px;
+    }
+
+    #foodTruckPageHeader {
+        padding: 0;
+    }
+}
+#gallerySmall{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 8px;
+}
+
+#gallerySmall.container{
+    padding-top: 8px;
+}
+#gallerySmall>div{
+    width: 225px;
+    height: 225px;
+}
+#gallerySmall>div img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+

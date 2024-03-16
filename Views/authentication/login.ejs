@@ -1,0 +1,54 @@
+<%- include('../homeIncludes/header.ejs') %>
+    <section id="authentication">
+        <div id="authenticationImage">
+            <div>
+                <img src="/img/streetFood2.png" alt="">
+                <h1 class="heading alignCenter"
+                    style="font-size: 40px; letter-spacing: 2px; color: rgb(198, 101, 11); font-weight: 500;">Taste On
+                    Wheels</h1>
+            </div>
+        </div>
+        <div id="authenticationForm">
+            <div class="authHeader">
+                <ul class="">
+                    <li><a href="/">Home</a></li>
+                </ul>
+                <ul class="navBtns">
+                    <li><a class="btnOrange" href="/signup">Sign Up</a></li>
+                </ul>
+            </div>
+            <br>
+            <section class="formHeader">
+                <div>
+
+                    <div style="text-align: center;">
+                        <img style="text-align: center;" src="/img/logo.png" alt="">
+                    </div>
+                    <h1 class="alignCenter heading " style="margin: 10px 0; padding:10px 0">Login to TOW Account</h1>
+                     <!-- <h1 class="error">Incorrect Email</h1> -->
+                    <form action="" id="authForm">
+                        <label for="Email">Email</label>
+                        <input type="text" placeholder="john@gmail.com">
+                        
+                        <label for="Password">Password</label>
+                        <input type="password" placeholder="">
+            
+                        <br>
+                        <div class="alignCenter">
+                            <p style="margin-bottom: 10px; ">Login to your account to add reviews to restaurants, add or
+                                manage your restaurant</p>
+                            <p>Don't have an account ?, <a href="/signup">Click here to create new account</a> </p>
+                            <button id="submitButton" type="submit">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+
+        </div>
+        </div>
+    </section>
+
+    </body>
+
+    </html>
