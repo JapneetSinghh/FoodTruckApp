@@ -1,13 +1,77 @@
 <%- include('../homeIncludes/header.ejs') %>
     <link rel="stylesheet" href="/css/dashboard.css">
-    <section id="dashboardNav">
+    <section id="dashboardNav" class="">
         <div>
-            <a href="/"> <img src="/img/logo.png" alt=""></a>
+            <button class="dashboardMenuBtn"><i class="fa-solid fa-list"></i></button>
+            <a class="dashboardLogo" href="/"> <img src="/img/logo.png" alt=""></a>
         </div>
-        <ul>
+        <ul class="flexRow alignItemCenter">
             <li>Harsimar Kaur Bhatia <i class="fa-solid fa-user"></i></li>
         </ul>
 
     </section>
+    <main id="dashboardMain" class="">
+        <section id="dashboardSidebar">
+            <div style="text-align: right; padding: 20px;">
+                <button id="closeSidebarButton">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+            <nav class="sidebarNav flexColumn spaceBetween" style="height: 90%;">
+                <div>
+                    <img src="/img/logo.png" alt="">
+                </div>
+                <div class="sidebarList">
+                    <ul class="flexColumn">
+                        <li><a href="" class="active"><i class="fa-solid fa-plus flexRow alignItemCenter"></i> Add Restaurant </a></li>
+                        <li><a href=""><i class="fa-solid fa-plus flexRow alignItemCenter"></i> Add Restaurant </a></li>
+                        <li><a href=""><i class="fa-solid fa-plus flexRow alignItemCenter"></i> Add Restaurant </a></li>
+                        <li><a href=""><i class="fa-solid fa-plus flexRow alignItemCenter"></i> Add Restaurant </a></li>
+                    </ul>
+                </div>
+                <button id="logoutBtn">Log Out <i class="fa-solid fa-right-from-bracket"></i></button>
+            </nav>
+        </section>
+        <section id="dashboardContent">
+            <div class="dashboardContainer">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. At voluptates odio qui delectus iure
+                    provident voluptate vitae tempore fuga! Laborum facere magnam libero, modi eius accusantium
+                    repudiandae officia commodi enim! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est
+                    illum esse officia expedita tempora voluptatum quidem numquam error soluta quod, asperiores et optio
+                    vel voluptates doloremque voluptatem ea quibusdam quaerat adipisci possimus. Cum rerum ex dolor
+                    laborum at tenetur vel, repellat tempore rem facere iste incidunt consequatur ad vitae perspiciatis
+                    quo, blanditiis illum voluptatum animi! Similique dolor vero esse consequatur commodi ipsam deleniti
+                    placeat ipsum, sint nisi voluptatum maxime expedita aut earum. Inventore repudiandae voluptates quo
+                    minima et accusantium! Quidem quasi accusantium sequi neque libero tempore ipsa beatae earum,
+                    adipisci architecto aliquid repellendus a quis tempora recusandae blanditiis incidunt praesentium
+                    eaque perferendis non. Quibusdam dicta cumque eaque quo, distinctio dignissimos nam minima soluta
+                    vitae eligendi, ipsa esse repudiandae magnam facere necessitatibus animi consequatur vel
+                    exercitationem eveniet reprehenderit expedita voluptatibus perspiciatis. Hic non nemo molestias esse
+                    quis quisquam tenetur id et nulla necessitatibus ullam in blanditiis reprehenderit incidunt natus,
+                    officia obcaecati doloremque impedit a, soluta voluptatum! Natus repellendus autem neque praesentium
+                    accusamus laborum laboriosam, ad deleniti dicta, maxime optio in aliquam officiis veniam beatae
+                    voluptatibus hic enim? Veniam ullam quasi tempora adipisci amet suscipit, incidunt obcaecati in
+                    reprehenderit molestias illo cupiditate ad. Odio sint voluptatibus accusamus praesentium aspernatur
+                    expedita? Corporis animi aliquam neque illo non nemo voluptatum quisquam distinctio suscipit eveniet
+                    itaque quo enim cumque, voluptatibus possimus? Pariatur aperiam qui itaque. Veritatis corporis quo
+                    odio saepe, vitae molestias possimus consequatur dolore iste, laudantium aliquam, dolores sit magni
+                    explicabo id quibusdam odit tempore atque unde. Et officia cum nobis eveniet ipsam provident
+                    quibusdam laborum recusandae ex doloribus dicta explicabo, eius unde at praesentium pariatur quod
+                    possimus, facilis veritatis illum ducimus perferendis ea. Maxime fugit, perferendis illo vero
+                    accusantium sint cum sit ad, inventore natus, quibusdam quia. Illo a aliquam in, optio neque magnam
+                    quidem impedit vero obcaecati consequatur delectus quisquam error, soluta sapiente quasi suscipit
+                    asperiores quibusdam quaerat, corporis numquam reiciendis excepturi? Aut voluptates, excepturi
+                    laboriosam vitae ratione consequuntur, reiciendis accusantium autem sequi facere dolorem nihil ullam
+                    repudiandae, enim recusandae corrupti architecto perspiciatis culpa fugit dolores nulla libero
+                    maxime explicabo quis. Aperiam laudantium velit voluptatibus amet sint expedita voluptatem aut
+                    consectetur molestias quae, minima a facilis tempora quis commodi doloribus reprehenderit voluptatum
+                    dolore nesciunt dolores repudiandae maxime facere? Cumque, eius pariatur fuga placeat beatae, nihil
+                    voluptate numquam tenetur laborum et ab, laboriosam dolores dolorum atque aperiam commodi quaerat
+                    iste animi? Unde, similique temporibus. Debitis illo, ipsam in nesciunt quas optio beatae harum!</p>
+            </div>
+        </section>
+    </main>
+    <script src="/js/dashboardSidebar.js"></script>
+
     <!-- Page Ends  -->
     <%- include('../homeIncludes/pageEnd.ejs') %>

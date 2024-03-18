@@ -1,10 +1,17 @@
 #dashboardNav {
     display: flex;
     justify-content: space-between;
-    padding: 14px 25px;
+    padding: 11px 35px;
     background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     align-items: center;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    padding-left: 330px;
+    transition: padding-left 0.3s linear;
+    height: 75px;
+    /* Only transition the padding-left property */
 }
 
 #dashboardNav img {
@@ -12,7 +19,7 @@
 }
 
 #dashboardNav ul li {
-    font-size: 20px;
+    font-size: 18px;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -20,8 +27,185 @@
 }
 
 #dashboardNav ul li i {
-    font-size: 22px;
+    font-size: 20px;
     color: var(--orange);
-    margin-left: 15px;
+    margin-left: 8px;
+}
 
+#dashboardMain {
+    display: flex;
+}
+
+#dashboardSidebar {
+    width: 310px;
+    background-color: rgb(255, 255, 255);
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    left: 0;
+    transition: left 0.3s ease-in-out;
+}
+
+#dashboardContent {
+    background-color: #ffffff;
+    width: 100vw;
+    height: 100vh;
+    padding-left: 310px;
+    padding-top: 70px;
+    transition: padding-left 0.3s ease-in-out;
+}
+
+.dashboardContainer {
+    padding: 20px;
+}
+
+.responsiveSidebar #dashboardSidebar {
+    left: -310px;
+}
+
+.responsiveSidebar #dashboardContent {
+    padding-left: 0;
+}
+
+.responsiveSidebar#dashboardNav {
+    padding-left: 35px;
+}
+
+
+.dashboardMenuBtn {
+    background: transparent;
+    font-size: 25px;
+    border: none;
+    margin-left: 25px !important;
+    cursor: pointer;
+    transition: 0.3s all linear;
+    color: var(--orange);
+}
+
+.dashboardMenuBtn:hover {
+    color: var(--beige);
+}
+
+.dashboardMenuBtn {
+    display: none;
+}
+
+#closeSidebarButton {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 28px;
+    display: inline-block;
+    color: red;
+    transition: 0.3s all linear;
+}
+
+#closeSidebarButton:hover {
+    color: #333;
+    cursor: pointer;
+    transform: rotate(90deg);
+}
+
+@media screen and (max-width:1100px) {
+    #dashboardNav {
+        padding-left: 20px;
+    }
+
+    #dashboardContent {
+        padding-left: 0;
+    }
+
+    .dashboardMenuBtn {
+        display: contents;
+    }
+
+    .dashboardLogo {
+        display: none;
+    }
+
+    #closeSidebarButton {
+        display: contents;
+    }
+
+    .responsiveSidebar #dashboardSidebar {
+        left: 0;
+    }
+
+    #dashboardSidebar {
+        left: -310px;
+        transition: 0.3s all linear;
+    }
+}
+
+@media screen and (min-width:1100px) {
+    #dashboardNav {
+        padding-left: 340px !important;
+    }
+
+    #closeSidebarButton {
+        display: none;
+    }
+}
+
+.sidebarNav img {
+    width: 200px;
+}
+
+.sidebarNav ul li a {
+    padding:13px 10px;
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 22px;
+}
+.sidebarNav ul li a{
+    border-left: 10px solid transparent;
+}
+.sidebarNav ul li a:hover{
+    border-left: 10px solid var(--orange);
+    background-color: rgb(255, 242, 225);
+}
+
+.active{
+    border-left: 10px solid var(--orange) !important;
+    background-color: rgb(255, 242, 225);
+    color: var(--orange);
+}
+
+.sidebarNav ul li i{
+    font-size: 24px;
+    margin-right: 10px;
+    color: var(--orange);
+    font-weight: 400;
+}
+
+.sidebarNav{
+    padding:0px 0;
+    padding-bottom: 25px;
+    margin: 0;
+}
+
+.sidebarList{
+    width: 100%;
+}
+
+
+#logoutBtn{
+    background-color: rgb(213, 35, 35);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s all linear;
+}
+
+#logoutBtn:hover{
+    background-color: black;
 }
