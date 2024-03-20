@@ -24,26 +24,30 @@
                         <img style="text-align: center;" src="/img/logo.png" alt="">
                     </div>
                     <h1 class="alignCenter heading " style=" padding:10px 0">Create TOW Account</h1>
-                     <!-- <h1 class="error">Incorrect Email</h1> -->
-                    <form action="" id="authForm">
+                    <h1 class="<%= className%>">
+                        <%=message%>
+                    </h1>
+                    <form action="/signup" method="post" id="authForm">
                         <label for="firstName">First Name</label>
-                        <input type="text" placeholder="John">
-                     
+                        <input name="firstName" type="text" placeholder="John" value="<%=firstName%>">
+
                         <label for="lastName">Last Name</label>
-                        <input type="text" placeholder="Doe">
-                        
+                        <input name="lastName" type="text" placeholder="Doe" value="<%=lastName%>">
+
                         <label for="Email">Email</label>
-                        <input type="text" placeholder="john@gmail.com">
-                        
+                        <input name="email" type="text" placeholder="john@gmail.com" value="<%=email%>">
+
                         <label for="Password">Password</label>
-                        <input type="password" placeholder="At least 6 characters">
-            
+                        <input name="password" type="password" placeholder="At least 6 characters" value="<%=password%>">
+
                         <label for="Password">Confirm Password</label>
-                        <input type="password" placeholder="Enter password again">
-            
+                        <input name="confirmPassword" type="password" placeholder="Enter password again">
+
                         <br>
                         <div class="alignCenter">
-                            <p style="margin-bottom: 10px; ">Taste on wheels account allows you to give feedback to food trucks, also you can add and manage your foodtruck on TOW website using this account.</p>
+                            <p style="margin-bottom: 10px; ">Taste on wheels account allows you to give feedback to food
+                                trucks, also you can add and manage your foodtruck on TOW website using this account.
+                            </p>
                             <p>Already have an account ?, <a href="/login">Click here to login</a> </p>
                             <button id="submitButton" type="submit">Sign Up</button>
                         </div>

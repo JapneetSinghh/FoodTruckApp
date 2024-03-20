@@ -8,9 +8,12 @@
             <li><a href="/foodTrucks">Food Trucks</a></li>
         </ul>
         <ul class="navBtns">
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a class="btnOrange" href="/signup">Add Your Food Truck</a></li>
-            <li><a class="btnBeige" href="/login">Login</a></li>
+            <% if(isLoggedIn){%>
+                    <li><a style="font-size: 25px; letter-spacing: 2px;" class="btnDashboard flexRow alignItemCenter" href="/dashboard"><i style="font-size: 25px; margin-right: 8px;" class="fa-solid fa-user"></i> Dashboard</a></li>
+            <% }else{%>
+                <li><a class="btnOrange" href="/signup">Add Your Food Truck</a></li>
+                <li><a class="btnBeige" href="/login">Login</a></li>
+            <% }%>
         </ul>
     </div>
     <div class="icons">

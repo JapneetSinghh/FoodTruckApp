@@ -5,10 +5,20 @@ Packages Imported
 3 Body Parser
 4 Nodemon
 5 Ejs
+6 Mongoose
+7 express-session
+8 connect-mongodb-session
+9 cookie-parser
+10 connect-flash 
 
 npm install --save express
-npm install --save body-parser
 npm install --save body-parser
 npm install --save-dev nodemon
 npm install --save ejs
 
+
+Used for authentication
+npm install --save mongoose
+npm install --save express-session
+npm install --save cookie-parser
+npm install --save connect-flash

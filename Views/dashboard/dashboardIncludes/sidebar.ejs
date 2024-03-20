@@ -1,0 +1,28 @@
+  <!-- Dashboard Sidebar -->
+  <section id="dashboardSidebar">
+    <div style="text-align: right; padding: 20px;">
+        <button id="closeSidebarButton">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+    </div>
+    <nav class="sidebarNav flexColumn spaceBetween" style="height: 90%;">
+        <div>
+            <img src="/img/logo.png" alt="">
+        </div>
+        <div class="sidebarList">
+            <ul class="flexColumn">
+                <li><a href="/dashboard" class="active"><i class="fa-solid fa-table-cells-large"></i>Dashboard</a></li>
+                <li><a href="/addFoodTruck"><i class="fa-solid fa-plus flexRow alignItemCenter"></i> Add Food Truck</a></li>
+                <li><a href=""><i class="fa-solid fa-truck-front"></i> My Food Trucks</a></li>
+                <li><a href=""><i class="fa-solid fa-heart"></i> Favorites </a></li>
+                <li><a href=""><i class="fa-solid fa-comment-dots"></i> My Feedbacks </a></li>
+            </ul>
+        </div>
+        
+        <!-- Log Out Form -->
+        <form action="/logout" method="post">
+            <button id="logoutBtn">Log Out  <i class="fa-solid fa-right-from-bracket"></i></button>
+        </form>
+
+    </nav>
+</section>

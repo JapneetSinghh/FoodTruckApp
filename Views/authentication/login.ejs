@@ -25,14 +25,17 @@
                         <img style="text-align: center;" src="/img/logo.png" alt="">
                     </div>
                     <h1 class="alignCenter heading " style="margin: 10px 0; padding:10px 0">Login to TOW Account</h1>
-                     <!-- <h1 class="error">Incorrect Email</h1> -->
-                    <form action="" id="authForm">
+
+                    <h1 class="<%= className%>">
+                        <%=message%>
+                    </h1>
+                    <form action="/login" method="post" id="authForm">
                         <label for="Email">Email</label>
-                        <input type="text" placeholder="john@gmail.com">
-                        
+                        <input type="text" name="email" placeholder="john@gmail.com" value="<%= email%>">
+
                         <label for="Password">Password</label>
-                        <input type="password" placeholder="">
-            
+                        <input name="password" type="password" placeholder="">
+
                         <br>
                         <div class="alignCenter">
                             <p style="margin-bottom: 10px; ">Login to your account to add reviews to restaurants, add or
