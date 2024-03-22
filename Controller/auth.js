@@ -32,7 +32,6 @@ exports.getLogin = (req, res, next) => {
 exports.postLogin = (req, res, next) => {
 
     const errors = validationResult(req);
-    console.log(req.body.email)
     if (!errors.isEmpty()) {
         let className = 'errorFlash'
         return res.render('authentication/login', {
@@ -98,7 +97,7 @@ exports.getSignUp = (req, res, next) => {
 
     let message = req.flash('error');
     let className = req.flash('className');
-
+    
     console.log('Class Name: ', className)
 
     // Checking if there is any error
@@ -151,6 +150,7 @@ exports.postSignUp = (req, res, next) => {
             if (user) {
                 req.flash('error', 'Account with this email already exists');
                 req.flash('className', 'errorFlash');
+                console.log('Account with this email already exists');
                 return res.redirect('/signup');
             }
             // Getting date and time of signup

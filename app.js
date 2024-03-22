@@ -6,6 +6,7 @@ const app = express();
 const mongoose = require('mongoose');
 const MONGODB_URI = "mongodb+srv://harsimar:harsimar123@cluster0.wp4m7y7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
+// MongoDB Sessions
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const store = new MongoDBStore({
@@ -37,19 +38,36 @@ const path = require('path');
 // Serving the public folder as static
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Importing Multer for uploading Images
+const multer = require('multer');
+
+
 // Adding body parser
 const bodyParse = require('body-parser');
 app.use(bodyParse.urlencoded({ extended: false }));
 
 // Serving login status to all pages
-app.use((req,res,next)=>{
-    res.locals.isLoggedIn=req.session.isLoggedIn;
+app.use((req, res, next) => {
+    res.locals.isLoggedIn = req.session.isLoggedIn;
     res.locals.user = req.session.user;
     next();
 })
 
 // Using flash function to send responses to user
 app.use(flash());
+
+
+const fileStorage = multer.diskStorage({
+    destination: function (req, res, cb) {
+        return cb(null, "./uploads")
+    },
+    filename: function (req, res, cb) {
+        return cb(null, `${Date.now()}-${file.originalname}`)
+    }
+})
+
+
+
 
 // Setting up the ejs template engine
 app.set('view engine', 'ejs');
@@ -59,10 +77,13 @@ app.set('views', 'Views')
 const homeRoutes = require('./Routes/home')
 const authRoutes = require('./Routes/auth')
 const dashboardRoutes = require('./Routes/dashboard')
+const uploadRoutes = require('./Routes/uploadImage')
 
 app.use(homeRoutes.router);
 app.use(authRoutes.router);
 app.use(dashboardRoutes.router);
+app.use(dashboardRoutes.router);
+app.use(uploadRoutes);
 
 console.log('Connecting to MongoDB database');
 const bcryptjs = require('bcryptjs');

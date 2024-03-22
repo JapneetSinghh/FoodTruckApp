@@ -6,146 +6,136 @@
             <!-- Dashboard Sidebar -->
             <%- include('./dashboardIncludes/sidebar.ejs') %>
 
-                <section id="dashboardContent"  style="height: fit-content;">
+                <section id="dashboardContent" style="height: fit-content;">
                     <div class="dashboardContainer">
+                        <h1 style="margin: 0;" class="<%= className%>">
+                            <%=message%>
+                        </h1>
+                        <br>
                         <!-- Dashboard Content Start -->
                         <h1 class="pageTitle"><span><a href="/">Dashboard / </a> </span>Add New Food Truck</h1>
                         <!-- Dashboard Form -->
                         <article class="dashboardContentContainer">
                             <h2 class="flexRow spaceBetween alignItemCenter" style="margin-bottom: 0;">Enter Your Food
                                 Truck's Details </h2>
-                            <form action="" id="addTruckForm">
+                            <form action="/addFoodTruck" method="post" id="addTruckForm">
+                                <!-- Truck Name -->
                                 <label for="Food Truck Name">Food Truck Name</label>
-                                <input type="text" placeholder="Eg: Coffee by Chuck's">
+                                <input name="name" value="<%=name%>" type="text" placeholder="Eg: Coffee by Chuck's">
 
                                 <label for="address">Food Truck Address As Per Google Maps</label>
-                                <input type="text" placeholder="86, Feroegate, Fairway Road, Kitchener">
+                                <input name="address" value="<%=address%>" type="text"
+                                    placeholder="86, Feroegate, Fairway Road, Kitchener">
+
+                                <!-- Truck Email -->
+                                <label for="Food Truck Email">Contact Email</label>
+                                <input name="email" value="<%=email%>" type="email"
+                                    placeholder="CoffeByChucks@gmail.com">
+
+                                <!-- Truck Contact No -->
+                                <label for="Food Truck Email">Contact Numbers</label>
+                                <input name="contactNumbers" value="<%=contactNumbers%>" type="text"
+                                    placeholder="+1 (XXX) XXX XXXX, +1 (YYY) YYY YYYY">
 
                                 <label for="address">Average Price For 2 People ($)</label>
-                                <input type="text" placeholder="60">
+                                <input name="priceForTwo" value="<%=priceForTwo%>" type="number" placeholder="60">
 
                                 <!-- Days Opened and timings -->
                                 <label for="DateAndTime">Select Food Truck's Working Days and Hours</label>
                                 <div style="padding:0 15px;">
-                                    <% const days=['Monday', 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday'
-                                        , 'Saturday' , 'Sunday' ]; %>
-                                        <% days.forEach(day=> { %>
-                                            <div class="flexRow spaceBetween">
-                                                <label for="<%= day %>" style="color: #333;"">
-                                                <%= day %>
-                                            </label>
-                                            <div class=" flexRow">
-                                                    <div style="margin-right: 20px;">
-                                                        <input style="margin-right: 5px;" type="radio"
-                                                            id="option1_<%= day %>" name="<%= day %>" value="Open"
-                                                            onclick="toggleTiming('<%= day %>', true)">
-                                                        <label for="option1_<%= day %>">Open</label><br>
-                                                    </div>
-                                                    <div>
-                                                        <input style="margin-right: 5px;" type="radio"
-                                                            id="option2_<%= day %>" name="<%= day %>" value="Closed"
-                                                            onclick="toggleTiming('<%= day %>', false)">
-                                                        <label for="option2_<%= day %>">Closed</label><br>
-                                                    </div>
-                                            </div>
-                                </div>
+                                    <%- include('./dashboardIncludes/addFoodTruckOpenClosed.ejs') %>
 
-                                <div class="timing <%= day %>_timing">
-                                    <div>
-                                        <label for="address">Opening Time</label>
-                                        <input type="time" value="11:00">
-                                    </div>
-                                    <div>
-                                        <label for="address">Closing Time</label>
-                                        <input type="time" value="21:00">
-                                    </div>
+
+
                                 </div>
+                                <!-- Cusines Offered -->
+                                <label for="address">Cusines Offered At Your Food Truck</label>
+                                <input type="text" name="cusinesOffered"
+                                    placeholder="Indian, Italian, Continental, Chinese...">
+
+
+                                <!-- Speciality -->
+                                <label for="address">Enter Your 3 Special Dishes/Drinks</label>
+                                <input type="text" name="specialDishOne" placeholder="White Sauce Pasta">
+                                <input type="text" name="specialDishTwo" placeholder="Ramen">
+                                <input type="text" name="specialDishThree" placeholder="Watermelon Mojito">
+
+                                <!-- Famous For -->
+                                <label for="address">What Is Your Food Truck Famous For ?</label>
+                                <input name="famousFor" type="text"
+                                    placeholder="Soft Drinks, Tacos, Burgers, Late Night Music">
+
+                                <!-- Restaurant Description -->
+                                <label for="address">Description about your food truck</label>
+                                <textarea name="description" id="" placeholder="Minimum 100 words"></textarea>
+
+                                <!-- Serving Since -->
+                                <label for="Servince Since">Serving Since</label>
+                                <select
+                                    style="padding: 10px; border-radius: 10px; font-size: 16px; background-color: rgba(246, 212, 144, 0.431); border: none;"
+                                    name="year" id="yearSelect">
+                                    <% for (let year=2024; year>=1900; year--) { %>
+                                        <option style="padding: 6px; border-radius: 10px;" value="<%= year %>">
+                                            <%= year %>
+                                        </option>
+                                        <% } %>
+                                </select>
+
+                                <!-- Famous For -->
+                                <label for="address">Discount today</label>
+                                <select
+                                    style="padding: 10px; border-radius: 10px; font-size: 16px; background-color: rgba(246, 212, 144, 0.431); border: none;"
+                                    name="discountToday" id="yearSelect">
+                                    <option style="padding: 6px; border-radius: 10px;">
+                                        0% Off
+                                    </option>
+                                    <% for (let discount=1; discount<=20; discount++) { %>
+                                        <option style="padding: 6px; border-radius: 10px;" value="<%= discount %>">
+                                            Flat <%= discount*5 %> % Off
+                                        </option>
+                                        <% } %>
+                                </select>
+
+                                <!-- BOGO OFFER -->
+                                <label for="address">Buy One Get one Free Offer On (if any)</label>
+                              
+                                <% const days2 = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']; %>
+                                <% days2.forEach(day => { %>
+                                    <% if (bogoOn.includes(day)) { %>
+                                        <label style="margin-bottom: 0; color: #333;">
+                                            <input name="bogoOn" style="margin-bottom: 0;" type="checkbox" name="day" value="<%= day %>" checked>
+                                            <%= day %>
+                                        </label>
+                                    <% } else { %>
+                                        <label style="margin-bottom: 0; color: #333;">
+                                            <input name="bogoOn" style="margin-bottom: 0;" type="checkbox" name="day" value="<%= day %>">
+                                            <%= day %>
+                                        </label>
+                                    <% } %>
                                 <% }) %>
+                                
 
-                                    <script>
-                                        function toggleTiming(day, isOpen) {
-                                            var timingDiv = document.querySelector("." + day + "_timing");
-                                            if (isOpen) {
-                                                timingDiv.style.height = "70px";
-                                            } else {
-                                                timingDiv.style.height = "0";
-                                            }
-                                        }
-                                    </script>
+                                            <!-- Any custom dicount -->
+                                            <label for="address">Add Custom Discounts or Offers </label>
+                                            <label style="color: #333;" for="address">Custom Discount 1 </label>
+                                            <input name="customDiscount1" value="<%= customDiscount1%>" type="text"
+                                                placeholder="Pay with American Express and get 20% cashback">
+                                            <label style="color: #333;" for="address">Custom Discount 2 </label>
+                                            <input name="customDiscount2" value="<%= customDiscount2%>" type="text"
+                                                placeholder="One soft drink free with every third order">
+                                            <label style="color: #333;" for="address">Custom Discount 3 </label>
+                                            <input name="customDiscount3" type="text"
+                                                placeholder="Garlic Bread and Pasta's @11.99$" value="<%= customDiscount3%>">
+                                            <!-- WEBSITE LINK IF ANY -->
+                                            <label for="address">Website Link</label>
+                                            <input name="website" type="text" placeholder="Chucls.ca">
+
+                                            <div class="alignCenter">
+                                                <button id="submitButton" type="submit">Add Food Truck</button>
+                                            </div>
+                            </form>
+                        </article>
                     </div>
-                    <!-- Cusines Offered -->
-                    <label for="address">Cusines Offered At Your Food Truck</label>
-                    <input type="text" placeholder="Indian, Italian, Continental, Chinese...">
-
-
-                    <!-- Speciality -->
-                    <label for="address">Enter Your 3 Special Dishes/Drinks</label>
-                    <input type="text" placeholder="White Sauce Pasta">
-                    <input type="text" placeholder="Ramen">
-                    <input type="text" placeholder="Watermelon Mojito">
-
-                    <!-- Famous For -->
-                    <label for="address">What Is Your Food Truck Famous For ?</label>
-                    <input type="text" placeholder="Soft Drinks, Tacos, Burgers, Late Night Music">
-
-                    <!-- Restaurant Description -->
-                    <label for="address">Description about your food truck</label>
-                    <textarea name="" id="" placeholder="Minimum 100 words"></textarea>
-
-                    <!-- Serving Since -->
-                    <label for="Servince Since">Serving Since</label>
-                    <select
-                        style="padding: 10px; border-radius: 10px; font-size: 16px; background-color: rgba(246, 212, 144, 0.431); border: none;"
-                        name="year" id="yearSelect">
-                        <% for (let year=2024; year>=1900; year--) { %>
-                            <option style="padding: 6px; border-radius: 10px;" value="<%= year %>">
-                                <%= year %>
-                            </option>
-                            <% } %>
-                    </select>
-
-                    <!-- Famous For -->
-                    <label for="address">Discount today</label>
-                    <select
-                        style="padding: 10px; border-radius: 10px; font-size: 16px; background-color: rgba(246, 212, 144, 0.431); border: none;"
-                        name="year" id="yearSelect">
-                        <option style="padding: 6px; border-radius: 10px;">
-                            0% Off
-                        </option>
-                        <% for (let discount=1; discount<=20; discount++) { %>
-                            <option style="padding: 6px; border-radius: 10px;" value="<%= discount %>">
-                                Flat <%= discount*5 %> % Off
-                            </option>
-                            <% } %>
-                    </select>
-
-                    <!-- BOGO OFFER -->
-                    <label for="address">Buy One Get one Free Offer On (if any)</label>
-                    <% const days2=['Monday', 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday' , 'Saturday' , 'Sunday' ]
-                        %>
-                        <% days2.forEach(day=>{ %>
-                            <label style="margin-bottom: 0; color: #333;"><input style="margin-bottom: 0;"
-                                    type="checkbox" name="day" value="<%= day%>">
-                                <%= day%>
-                            </label>
-                            <%})%>
-
-                                <!-- Any custom dicount -->
-                                <label for="address">Add Custom Discounts or Offers </label>
-                                <label style="color: #333;" for="address">Custom Discount 1 </label>
-                                <input type="text" placeholder="Pay with American Express and get 20% cashback">
-                                <label style="color: #333;" for="address">Custom Discount 2 </label>
-                                <input type="text" placeholder="One soft drink free with every third order">
-                                <label style="color: #333;" for="address">Custom Discount 3 </label>
-                                <input type="text" placeholder="Garlic Bread and Pasta's @11.99$">
-
-
-                                <div class="alignCenter">
-                                    <button id="submitButton" type="submit">Add Food Truck</button>
-                                </div>
-                                </form>
-                                </article>
-                                </div>
                 </section>
         </main>
         <script src="/js/dashboardSidebar.js"></script>

@@ -1,0 +1,229 @@
+<!-- Monday -->
+<div class="flexRow spaceBetween">
+    <label for="Monday" style="color: #333;">Monday</label>
+    <div class="flexRow">
+        <div style="margin-right: 20px;">
+            <input style="margin-right: 5px;" type="radio" id="option1_Monday" name="MondayStatus" value="true"
+                onclick="toggleTiming('Monday', true)" <% if (mondayStatus==='true' ) { %> checked <% } %>>
+                <label for="open_Monday">Open</label><br>
+        </div>
+        <div>
+            <input style="margin-right: 5px;" type="radio" id="option2_Monday" name="MondayStatus" value="false"
+                onclick="toggleTiming('Monday', false)" <% if (mondayStatus==='false' || mondayStatus==='' ) { %>
+            checked <% } %>>
+                <label for="closed_Monday">Closed</label><br>
+        </div>
+    </div>
+</div>
+<!-- Monday Toggle Timings -->
+<div class="timing Monday_timing">
+    <div>
+        <label for="address">Opening Time</label>
+        <input type="time" name="openingTimeMonday" value="<%= openingTimeMonday %>">
+    </div>
+    <div>
+        <label for="address">Closing Time</label>
+        <input type="time" name="closingTimeMonday" value="<%= closingTimeMonday %>">
+    </div>
+</div>
+<!-- Monday Ends -->
+
+<!-- Tuesday -->
+<div class="flexRow spaceBetween">
+    <label for="Tuesday" style="color: #333;">Tuesday</label>
+    <div class="flexRow">
+        <div style="margin-right: 20px;">
+            <input style="margin-right: 5px;" type="radio" id="option1_Tuesday" name="TuesdayStatus" value="true"
+                onclick="toggleTiming('Tuesday', true)" <% if (tuesdayStatus==='true' ) { %> checked <% } %>>
+                <label for="open_Tuesday">Open</label><br>
+        </div>
+        <div>
+            <input style="margin-right: 5px;" type="radio" id="option2_Tuesday" name="TuesdayStatus" value="false"
+                onclick="toggleTiming('Tuesday', false)" <% if (tuesdayStatus==='false' || tuesdayStatus==='' ) { %>
+            checked <% } %>>
+                <label for="closed_Tuesday">Closed</label><br>
+        </div>
+    </div>
+</div>
+<!-- Tuesday Toggle Timings -->
+<div class="timing Tuesday_timing">
+    <div>
+        <label for="address">Opening Time</label>
+        <input type="time" name="openingTimeTuesday" value="<%= openingTimeTuesday %>">
+    </div>
+    <div>
+        <label for="address">Closing Time</label>
+        <input type="time" name="closingTimeTuesday" value="<%= closingTimeTuesday %>">
+    </div>
+</div>
+<!-- Tuesday Ends -->
+
+<!-- Wednesday -->
+<div class="flexRow spaceBetween">
+    <label for="Wednesday" style="color: #333;">Wednesday</label>
+    <div class="flexRow">
+        <div style="margin-right: 20px;">
+            <input style="margin-right: 5px;" type="radio" id="option1_Wednesday" name="WednesdayStatus" value="true"
+                onclick="toggleTiming('Wednesday', true)" <% if (wednesdayStatus==='true' ) { %> checked <% } %>>
+                <label for="open_Wednesday">Open</label><br>
+        </div>
+        <div>
+            <input style="margin-right: 5px;" type="radio" id="option2_Wednesday" name="WednesdayStatus" value="false"
+                onclick="toggleTiming('Wednesday', false)" <% if (wednesdayStatus==='false' || wednesdayStatus==='' ) {
+                %> checked <% } %>>
+                <label for="closed_Wednesday">Closed</label><br>
+        </div>
+    </div>
+</div>
+<!-- Wednesday Toggle Timings -->
+<div class="timing Wednesday_timing">
+    <div>
+        <label for="address">Opening Time</label>
+        <input type="time" name="openingTimeWednesday" value="<%= openingTimeWednesday %>">
+    </div>
+    <div>
+        <label for="address">Closing Time</label>
+        <input type="time" name="closingTimeWednesday" value="<%= closingTimeWednesday %>">
+    </div>
+</div>
+<!-- Wednesday Ends -->
+<!-- Thursday -->
+<div class="flexRow spaceBetween">
+    <label for="Thursday" style="color: #333;">Thursday</label>
+    <div class="flexRow">
+        <div style="margin-right: 20px;">
+            <input style="margin-right: 5px;" type="radio" id="option1_Thursday" name="ThursdayStatus" value="true"
+                onclick="toggleTiming('Thursday', true)" <% if (thursdayStatus==='true' ) { %> checked <% } %>>
+                <label for="open_Thursday">Open</label><br>
+        </div>
+        <div>
+            <input style="margin-right: 5px;" type="radio" id="option2_Thursday" name="ThursdayStatus" value="false"
+                onclick="toggleTiming('Thursday', false)" <% if (thursdayStatus==='false' || thursdayStatus==='' ) { %>
+            checked <% } %>>
+                <label for="closed_Thursday">Closed</label><br>
+        </div>
+    </div>
+</div>
+<!-- Thursday Toggle Timings -->
+<div class="timing Thursday_timing">
+    <div>
+        <label for="address">Opening Time</label>
+        <input type="time" name="openingTimeThursday" value="<%= openingTimeThursday %>">
+    </div>
+    <div>
+        <label for="address">Closing Time</label>
+        <input type="time" name="closingTimeThursday" value="<%= closingTimeThursday %>">
+    </div>
+</div>
+<!-- Thursday Ends -->
+
+<!-- Friday -->
+<div class="flexRow spaceBetween">
+    <label for="Friday" style="color: #333;">Friday</label>
+    <div class="flexRow">
+        <div style="margin-right: 20px;">
+            <input style="margin-right: 5px;" type="radio" id="option1_Friday" name="FridayStatus" value="true"
+                onclick="toggleTiming('Friday', true)" <% if (fridayStatus==='true' ) { %> checked <% } %>>
+                <label for="open_Friday">Open</label><br>
+        </div>
+        <div>
+            <input style="margin-right: 5px;" type="radio" id="option2_Friday" name="FridayStatus" value="false"
+                onclick="toggleTiming('Friday', false)" <% if (fridayStatus==='false' || fridayStatus==='' ) { %>
+            checked <% } %>>
+                <label for="closed_Friday">Closed</label><br>
+        </div>
+    </div>
+</div>
+<!-- Friday Toggle Timings -->
+<div class="timing Friday_timing">
+    <div>
+        <label for="address">Opening Time</label>
+        <input type="time" name="openingTimeFriday" value="<%= openingTimeFriday %>">
+    </div>
+    <div>
+        <label for="address">Closing Time</label>
+        <input type="time" name="closingTimeFriday" value="<%= closingTimeFriday %>">
+    </div>
+</div>
+<!-- Friday Ends -->
+
+<!-- Saturday -->
+<div class="flexRow spaceBetween">
+    <label for="Saturday" style="color: #333;">Saturday</label>
+    <div class="flexRow">
+        <div style="margin-right: 20px;">
+            <input style="margin-right: 5px;" type="radio" id="option1_Saturday" name="SaturdayStatus" value="true"
+                onclick="toggleTiming('Saturday', true)" <% if (saturdayStatus==='true' ) { %> checked <% } %>>
+                <label for="open_Saturday">Open</label><br>
+        </div>
+        <div>
+            <input style="margin-right: 5px;" type="radio" id="option2_Saturday" name="SaturdayStatus" value="false"
+                onclick="toggleTiming('Saturday', false)" <% if (saturdayStatus==='false' || saturdayStatus==='' ) { %>
+            checked <% } %>>
+                <label for="closed_Saturday">Closed</label><br>
+        </div>
+    </div>
+</div>
+<!-- Saturday Toggle Timings -->
+<div class="timing Saturday_timing">
+    <div>
+        <label for="address">Opening Time</label>
+        <input type="time" name="openingTimeSaturday" value="<%= openingTimeSaturday %>">
+    </div>
+    <div>
+        <label for="address">Closing Time</label>
+        <input type="time" name="closingTimeSaturday" value="<%= closingTimeSaturday %>">
+    </div>
+</div>
+<!-- Saturday Ends -->
+<!-- Sunday -->
+<div class="flexRow spaceBetween">
+    <label for="Sunday" style="color: #333;">Sunday</label>
+    <div class="flexRow">
+        <div style="margin-right: 20px;">
+            <input style="margin-right: 5px;" type="radio" id="option1_Sunday" name="SundayStatus" value="true"
+                onclick="toggleTiming('Sunday', true)" <% if (sundayStatus==='true' ) { %> checked <% } %>>
+                <label for="open_Sunday">Open</label><br>
+        </div>
+        <div>
+            <input style="margin-right: 5px;" type="radio" id="option2_Sunday" name="SundayStatus" value="false"
+                onclick="toggleTiming('Sunday', false)" <% if (sundayStatus==='false' || sundayStatus==='' ) { %>
+            checked <% } %>>
+                <label for="closed_Sunday">Closed</label><br>
+        </div>
+    </div>
+</div>
+<!-- Sunday Toggle Timings -->
+<div class="timing Sunday_timing">
+    <div>
+        <label for="address">Opening Time</label>
+        <input type="time" name="openingTimeSunday" value="<%= openingTimeSunday %>">
+    </div>
+    <div>
+        <label for="address">Closing Time</label>
+        <input type="time" name="closingTimeSunday" value="<%= closingTimeSunday %>">
+    </div>
+</div>
+<!-- Sunday Ends -->
+
+<script>
+    window.onload = function () {
+        // Check if the "Open" radio button is pre-selected for each day and toggle timing div accordingly
+        toggleTiming('Monday', document.getElementById('option1_Monday').checked);
+        toggleTiming('Tuesday', document.getElementById('option1_Tuesday').checked);
+        toggleTiming('Wednesday', document.getElementById('option1_Wednesday').checked);
+        toggleTiming('Thursday', document.getElementById('option1_Thursday').checked);
+        toggleTiming('Friday', document.getElementById('option1_Friday').checked);
+        toggleTiming('Saturday', document.getElementById('option1_Saturday').checked);
+        toggleTiming('Sunday', document.getElementById('option1_Sunday').checked);
+    }
+
+    function toggleTiming(day, isOpen) {
+        var timingDiv = document.querySelector("." + day + "_timing");
+        if (isOpen) {
+            timingDiv.style.height = "70px";
+        } else {
+            timingDiv.style.height = "0";
+        }
+    }
+</script>

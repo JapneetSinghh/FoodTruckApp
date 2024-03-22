@@ -1,0 +1,73 @@
+<%- include('../../homeIncludes/header.ejs') %>
+    <!-- Dashboard Navbar -->
+    <%- include('../dashboardIncludes/dashboardNav.ejs') %>
+        <main id="dashboardMain" class="">
+            <!-- Dashboard Sidebar -->
+            <%- include('../dashboardIncludes/sidebar.ejs') %>
+                <section id="dashboardContent" style="height: fit-content;">
+                    <div class="dashboardContainer">
+                        <h1 class="heading">
+                            <%= truck.name%>
+                        </h1>
+                        <% if(pageType==='showImages' ){%>
+                            <% if(truck.images[0].mainImage==='' ){%>
+                                <p>You havent uploaded main image yet please upload</p>
+                                <a href="/upload-images/<%= truck._id%>/mainImage">Upload Main Image</a>
+                                <%}else{%>
+
+                                    <%}%>
+                                        <%}%>
+                                            <% if(pageType==='UploadMainImage' ){%>
+                                                <form action="/upload-images/mainImage" method="POST" enctype="multipart/form-data">
+
+                                                    <h1>Here you can upload images for your page</h1>
+
+                                                    <h2>Main Image (Banner)</h2>
+                                                    <input type="text" value="<%=foodTruckId%>" name="foodTruckId"
+                                                        id="" readonly>
+                                                    <label for="Password">Password</label>
+                                                    <input name="password" type="password" placeholder="">
+
+                                                    <input type="file" name="bannerImage" accept="image/*" required>
+
+                                                    <!-- <h2>Gallery Images (Up to 5)</h2>
+                                                                <input type="file" name="galleryImages" accept="image/*"
+                                                                    multiple required>
+
+                                                                <h2>Menu Images (Up to 3)</h2>
+                                                                <input type="file" name="menuImages" accept="image/*"
+                                                                    multiple required> -->
+
+                                                    <button type="submit">Upload Images</button>
+                                                </form>
+                                                <%}%>
+                                                    <!-- <form action="/upload-images/mainImage" method="POST" enctype="multipart/form-data">
+                            <input type="text" value="<%=foodTruckId%>" name="" id="">
+                            <% if(truck.images[0].mainImage==='' ){%>
+                                <p>You havent uploaded main image yet please upload</p>
+                                <a href="/upload-images/<%= truck._id%>/mainImage">Upload Main Image</a>
+                                <%}else{%>
+
+                                    <%}%>
+                                        <h1>Here you can upload images for your page</h1>
+
+                                        <h2>Main Image (Banner)</h2>
+                                        <input type="file" name="bannerImage" accept="image/*" required>
+
+                                        <h2>Gallery Images (Up to 5)</h2>
+                                        <input type="file" name="galleryImages" accept="image/*" multiple required>
+
+                                        <h2>Menu Images (Up to 3)</h2>
+                                        <input type="file" name="menuImages" accept="image/*" multiple required>
+
+                                        <button type="submit">Upload Images</button>
+                        </form> -->
+
+                    </div>
+                </section>
+        </main>
+        <script src="/js/dashboardSidebar.js"></script>
+
+
+        <!-- Page Ends  -->
+        <%- include('../../homeIncludes/pageEnd.ejs') %>

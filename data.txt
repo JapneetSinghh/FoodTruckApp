@@ -22,3 +22,8 @@ npm install --save mongoose
 npm install --save express-session
 npm install --save cookie-parser
 npm install --save connect-flash
+npm install --save express-validator
+npm install --save body-parser
+
+npm install --save multer
+
