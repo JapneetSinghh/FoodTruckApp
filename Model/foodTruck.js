@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const foodTruckSchema = new Schema({
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User', // GIVING REFERENCE TO USER SCHEMA
+        required: true
+    },
     name: {
         type: String,
         required: true
@@ -72,6 +77,14 @@ const foodTruckSchema = new Schema({
     },    
     website:{
         type:String,
+        required:false
+    },
+    ratings:{
+        type:Array,
+        required:false
+    },
+    testimonials:{
+        type:Array,
         required:false
     }
 })

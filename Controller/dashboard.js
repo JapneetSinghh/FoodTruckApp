@@ -63,8 +63,8 @@ exports.getAddFoodTruck = (req, res, next) => {
 
 exports.postAddFoodTruck = (req, res, next) => {
     const errors = validationResult(req);
-
-
+    const userId = req.session.user._id;
+    
     console.log(req.body);
     const name = req.body.name;
     const address = req.body.address;
@@ -171,6 +171,7 @@ exports.postAddFoodTruck = (req, res, next) => {
         })
     } else {
         const foodTruck = new FoodTruck({
+            userId:userId,
             name: name,
             address: address,
             priceForTwo: priceForTwo,
@@ -246,7 +247,9 @@ exports.postAddFoodTruck = (req, res, next) => {
                     specialThreeDishes: []
                 }
             ],
-            website:website
+            website:website,
+            testimonials:[],
+            ratings:[]
         })
 
 
@@ -273,7 +276,9 @@ exports.postTruckImages = (req, res, next) => {
 }
 
 exports.getMyTrucks = (req, res, next) => {
-    FoodTruck.find()
+    const userId = req.session.user._id;
+
+    FoodTruck.find({userId:userId})
         .then(truck => {
             console.log(truck);
             return res.render('dashboard/myTrucks', {

@@ -76,7 +76,8 @@ exports.postLogin = (req, res, next) => {
                                 message: 'Incorrect Password',
                                 className: 'errorFlash',
                                 email: req.body.email
-                            })                        }
+                            })
+                        }
                         // Starting new session
                         req.session.user = user;
                         req.session.isLoggedIn = 'true';
@@ -97,7 +98,7 @@ exports.getSignUp = (req, res, next) => {
 
     let message = req.flash('error');
     let className = req.flash('className');
-    
+
     console.log('Class Name: ', className)
 
     // Checking if there is any error
@@ -127,12 +128,11 @@ exports.postSignUp = (req, res, next) => {
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const password = req.body.password;
+    let className = 'errorFlash'
 
     const email = req.body.email;
-
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        let className = 'errorFlash'
         return res.render('authentication/signup', {
             pageTitle: "Sign Up | Taste On Wheels",
             message: errors.array()[0].msg,
@@ -144,14 +144,24 @@ exports.postSignUp = (req, res, next) => {
         })
     }
 
+    console.log(email);
 
     User.find({ email: req.body.email })
         .then(user => {
-            if (user) {
+            if (user.length !== 0) {
                 req.flash('error', 'Account with this email already exists');
                 req.flash('className', 'errorFlash');
+                console.log("user",user);
                 console.log('Account with this email already exists');
-                return res.redirect('/signup');
+                return res.render('authentication/signup', {
+                    pageTitle: "Sign Up | Taste On Wheels",
+                    message: 'Account with this email already exists',
+                    className: className,
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    password: password
+                })
             }
             // Getting date and time of signup
             const date = new Date();
@@ -165,13 +175,9 @@ exports.postSignUp = (req, res, next) => {
             // Hashing the password using bcryptjs
             bcryptjs.hash(req.body.password, 12)
                 .then(hashedPassword => {
-                    firstName = firstName;
-                    lastName = lastName;
-                    email = email;
                     feedback = [];
                     dateCreated = dateNow;
                     timeCreated = time;
-                    userType = 'user';
 
                     // Adding new User
                     const user = new User({

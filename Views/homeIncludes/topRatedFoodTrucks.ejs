@@ -1,4 +1,4 @@
-<section>
+<section style="background-color: white;"> 
     <div class="container ">
         <h1 class="heading">Our Top Rated Food Trucks</h1>
         <p class="headingDescription">Feast your eyes on our curated selection of Canada's finest food trucks! From
@@ -6,168 +6,36 @@
         <br>
         <br>
         <div class="grid">
-            <a href="/foodTrucks">
-                <div class="foodTruckGrid">
-                    <div class="foodTruckImg">
-                        <img src="https://images.pexels.com/photos/2518078/pexels-photo-2518078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                            alt="">
-                    </div>
-                    <div class="foodTruckContent">
-                        <div style="margin-top: 10px;" class="flexRow spaceBetween alignItemCenter">
-                            <h3 class="heading">Giani Ice Cream</h3>
-                            <p class="rating flexRow alignItemCenter"> <span>5</span> &nbsp; <i
-                                    class="fa-solid fa-star"></i></p>
+            <%truck.forEach(foodTruck=>{%>
+                <a href="/foodTrucks/<%= foodTruck._id%>">
+                    <div class="foodTruckGrid">
+                        <!-- Truck Image -->
+                        <div class="foodTruckImg">
+                            <img src="https://images.pexels.com/photos/2518078/pexels-photo-2518078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                alt="">
                         </div>
-                        <div class="flexRow alignItemCenter truckGridLocation">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <p>21-B, Avenue, Brampton</p>
+                        <!-- Truck Content -->
+                        <div class="foodTruckContent">
+                            <div style="margin-top: 10px;" class="flexRow spaceBetween alignItemCenter">
+                                <h3 class="heading"><%= foodTruck.name%></h3>
+                                <p class="rating flexRow alignItemCenter"> <span>5</span> &nbsp; <i
+                                        class="fa-solid fa-star"></i></p>
+                            </div>
+                            <div class="flexRow alignItemCenter truckGridLocation">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <p><%=foodTruck.address%></p>
+                            </div>
+                            <div class="gridTags" style="font-size: 16px;">
+                            <p style="font-size: 12px; font-weight: 400; padding:10px 9px;"><%=foodTruck.threeSpecialDishes[0].dish%></p>
+                            <p style="font-size: 12px; font-weight: 400; padding:10px 9px"><%=foodTruck.threeSpecialDishes[1].dish%></p>
+                            <p style="font-size: 12px; font-weight: 400; padding:10px 9px"><%=foodTruck.threeSpecialDishes[2].dish%></p>
                         </div>
-                        <!-- <div class="gridTags">
-                        <p>Burgers</p>
-                        <p>Softies</p>
-                        <p>Tacos</p>
-                        <p>Bubble Tea</p>
-                    </div> -->
-                        <br>
-                    </div>
-                </div>
-            </a>
-            <a href="/foodTrucks">
-                <div class="foodTruckGrid">
-                    <div class="foodTruckImg">
-                        <img src="/img/homeheader.jpg" alt="">
-                    </div>
-                    <div class="foodTruckContent">
-                        <div style="margin-top: 10px;" class="flexRow spaceBetween alignItemCenter">
-                            <h3 class="heading">The Taco and Tea</h3>
-                            <p class="rating flexRow alignItemCenter"> <span>5</span> &nbsp; <i
-                                    class="fa-solid fa-star"></i></p>
+                            <br>
                         </div>
-                        <div class="flexRow alignItemCenter truckGridLocation">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <p>66 Golden Street, Kitchener, Waterloo</p>
-                        </div>
-                        <!-- <div class="gridTags">
-                        <p>Burgers</p>
-                        <p>Tacos</p>
-                        <p>Bubble Tea</p>
-                        <p>Rolls</p>
-                        <p>Fish Orley</p>
-                    </div> -->
-                        <br>
                     </div>
-                </div>
-            </a>
-
-            <a href="/foodTrucks">
-                <div class="foodTruckGrid">
-                    <div class="foodTruckImg">
-                        <img src="https://images.pexels.com/photos/9897458/pexels-photo-9897458.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                            alt="">
-                    </div>
-                    <div class="foodTruckContent">
-                        <div style="margin-top: 10px;" class="flexRow spaceBetween alignItemCenter">
-                            <h3 class="heading">Camarao In Box</h3>
-                            <p class="rating flexRow alignItemCenter"> <span>5</span> &nbsp; <i
-                                    class="fa-solid fa-star"></i></p>
-                        </div>
-                        <div class="flexRow alignItemCenter truckGridLocation">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <p>Victroi St, Cambridge</p>
-                        </div>
-                        <!-- <div class="gridTags">
-                        <p>Burgers</p>
-                        <p>Tacos</p>
-                        <p>Bubble Tea</p>
-                        <p>Rolls</p>
-                        <p>Fish Orley</p>
-                    </div> -->
-                        <br>
-                    </div>
-                </div>
-            </a>
-
-            <a href="/foodTrucks">
-                <div class="foodTruckGrid">
-                    <div class="foodTruckImg">
-                        <img src="https://images.pexels.com/photos/2518078/pexels-photo-2518078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                            alt="">
-                    </div>
-                    <div class="foodTruckContent">
-                        <div style="margin-top: 10px;" class="flexRow spaceBetween alignItemCenter">
-                            <h3 class="heading">Giani Ice Cream</h3>
-                            <p class="rating flexRow alignItemCenter"> <span>5</span> &nbsp; <i
-                                    class="fa-solid fa-star"></i></p>
-                        </div>
-                        <div class="flexRow alignItemCenter truckGridLocation">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <p>21-B, Avenue, Brampton</p>
-                        </div>
-                        <!-- <div class="gridTags">
-                        <p>Burgers</p>
-                        <p>Softies</p>
-                        <p>Tacos</p>
-                        <p>Bubble Tea</p>
-                    </div> -->
-                        <br>
-                    </div>
-                </div>
-            </a>
-
-            <a href="/foodTrucks">
-                <div class="foodTruckGrid">
-                    <div class="foodTruckImg">
-                        <img src="/img/homeheader.jpg" alt="">
-                    </div>
-                    <div class="foodTruckContent">
-                        <div style="margin-top: 10px;" class="flexRow spaceBetween alignItemCenter">
-                            <h3 class="heading">The Taco and Tea</h3>
-                            <p class="rating flexRow alignItemCenter"> <span>5</span> &nbsp; <i
-                                    class="fa-solid fa-star"></i></p>
-                        </div>
-                        <div class="flexRow alignItemCenter truckGridLocation">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <p>66 Golden Street, Kitchener, Waterloo</p>
-                        </div>
-                        <!-- <div class="gridTags">
-                        <p>Burgers</p>
-                        <p>Tacos</p>
-                        <p>Bubble Tea</p>
-                        <p>Rolls</p>
-                        <p>Fish Orley</p>
-                    </div> -->
-                        <br>
-                    </div>
-                </div>
-            </a>
-
-            <a href="/foodTrucks">
-                <div class="foodTruckGrid">
-                    <div class="foodTruckImg">
-                        <img src="https://images.pexels.com/photos/9897458/pexels-photo-9897458.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                            alt="">
-                    </div>
-                    <div class="foodTruckContent">
-                        <div style="margin-top: 10px;" class="flexRow spaceBetween alignItemCenter">
-                            <h3 class="heading">Camarao In Box</h3>
-                            <p class="rating flexRow alignItemCenter"> <span>5</span> &nbsp; <i
-                                    class="fa-solid fa-star"></i></p>
-                        </div>
-                        <div class="flexRow alignItemCenter truckGridLocation">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <p>Victroi St, Cambridge</p>
-                        </div>
-                        <!-- <div class="gridTags">
-                        <p>Burgers</p>
-                        <p>Tacos</p>
-                        <p>Bubble Tea</p>
-                        <p>Rolls</p>
-                        <p>Fish Orley</p>
-                    </div> -->
-                        <br>
-                    </div>
-                </div>
-            </a>
+                </a>
+                <%})%>
+            
 
         </div>
     </div>

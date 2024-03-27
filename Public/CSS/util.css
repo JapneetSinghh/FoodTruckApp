@@ -131,6 +131,8 @@ color: #494949;
   background-color: rgb(11, 136, 0);
   color: white;
   padding:12px 23px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
 }
 #submitButton{
   margin: 20px 0;
@@ -173,4 +175,10 @@ p{
   font-weight: 300;
   font-style: normal;
   font-size: 14px;
+}
+
+.card{
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: inline-block;
 }

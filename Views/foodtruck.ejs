@@ -1,25 +1,12 @@
 <!-- Page Start HTML -->
 <%- include('./homeIncludes/header.ejs') %>
-    <!-- <section id="foodTruckNav" style="padding: 10px;">
-        <a href="/"><img style="width: 150px;" src="/img/logo.png" alt=""></a> -->
 
-    <!-- Search Bar -->
-    <!-- <div class="listContainer">
-                <ul class="navBtns">
-                    <li><a class="btnOrange" href="/signup">Add Your Food Truck</a></li>
-                    <li><a class="btnBeige" href="/login">Login</a></li>
-                </ul>
-            </div>
-    </section> -->
 
     <!-- Navbar -->
     <button class="responsiveOpenBtn"><i class="fa-solid fa-bars"></i></button>
     <nav id="navbar" class="responsiveNavbar">
         <div class="listContainer foodTruckNav">
-            <!-- <ul class="">
-            <li><a href="/about">About TOW</a></li>
-            <li><a href="/foodTrucks">Food Trucks</a></li>
-        </ul> -->
+
             <ul>
                 <div class="logoNav"><a href="/"><img src="/img/logo.png" alt=""></a></div>
             </ul>
@@ -29,10 +16,20 @@
                     <%- include('./homeIncludes/searchBar.ejs') %>
                 </div>
             </ul>
-            <ul class="navBtns">
-                <li><a class="btnOrange" href="/signup">Add Your Food Truck</a></li>
-                <li><a class="btnBeige" href="/login">Login</a></li>
-            </ul>
+            <%if(isLoggedIn){%>
+                <ul>
+                    <li><a style="font-size: 25px; letter-spacing: 2px;" class="btnDashboard flexRow alignItemCenter"
+                            href="/dashboard"><i style="font-size: 25px; margin-right: 8px;"
+                                class="fa-solid fa-user"></i> Dashboard</a>
+                    </li>
+                </ul>
+                <%}else{%>
+                    <ul class="navBtns">
+                        <li><a class="btnOrange" href="/signup">Add Your Food Truck</a></li>
+                        <li><a class="btnBeige" href="/login">Login</a></li>
+                    </ul>
+                    <%}%>
+
         </div>
         <div class="icons">
             <a href=""> <i class="fa-brands fa-instagram"></i> </a>
@@ -44,49 +41,415 @@
             <button class="closeNavBar"> <i class="fa-solid fa-arrow-left"></i></button>
         </div>
     </nav>
+    <!-- Truck Name -->
     <section class="container" style="padding-bottom: 0;">
         <div style="margin:0 8px;">
-            <h1 class="heading">The Orabella </h1>
-            <p style="font-size: 18px; letter-spacing: 2px;"> <i style="color:  rgb(223, 178, 88);"  class="fa-solid fa-location-dot"></i> 43, Fairway Road, Kitchener</p>
-        </div>
-    </section>
-    <section id="foodTruckPageHeader" class="container" style="padding-bottom: 0;">
-        <div id="foodTruckImage" style="margin-left: 0;">
-            <img  src="/img/homeHeader.jpg" alt="">
-        </div>
-        <div id="getDirections" style="margin-right: 0;">
-            <button class="btnGreen btn"
-                style="border: none; background: none; background-color: rgb(93, 155, 1); cursor: pointer; font-size: 24px;"
-                id="getDirectionsBtn">
-                <i class="fa-solid fa-location-dot"></i> Get Directions
-            </button>
-        </div>
-    </section>
-    <section class="container" id="gallerySmall">
-        <div>
-            <img  src="/img/homeHeader.jpg" alt="">
-        </div>
-        <div>
-            <img  src="/img/homeHeader.jpg" alt="">
-        </div>
-        <div>
-            <img  src="/img/homeHeader.jpg" alt="">
-        </div>
-        <div>
-            <img  src="/img/homeHeader.jpg" alt="">
-        </div>
-        <div>
-            <img  src="/img/homeHeader.jpg" alt="">
+            <h1 class="heading">
+                <%= truck.name%>
+            </h1>
+            <p style="font-size: 18px; letter-spacing: 2px;"> <i style="color:  rgb(223, 178, 88);"
+                    class="fa-solid fa-location-dot"></i>
+                <%= truck.address%>
+            </p>
         </div>
     </section>
 
+    <!-- Truck Image -->
+    <section id="foodTruckPageHeader" class="container" style="padding-bottom: 0;">
+        <div id="foodTruckImage" style="margin-left: 0;">
+            <img src="/img/homeHeader.jpg" alt="">
+        </div>
+        <div id="imageAside" style="margin-right: 0;">
+            <!-- Rating -->
+            <div class="ratingContainer">
+                <input id="rating" type="text" style="display: none;" readonly name="" id="" value="4.5">
+                <div class="stars">
+                    <div class="star">
+                        <div class="ratingValue"></div>
+                        <div class="ratingValue"></div>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="star">
+                        <div class="ratingValue"></div>
+                        <div class="ratingValue"></div>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="star">
+                        <div class="ratingValue"></div>
+                        <div class="ratingValue"></div>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="star">
+                        <div class="ratingValue"></div>
+                        <div class="ratingValue"></div>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="star">
+                        <div class="ratingValue"></div>
+                        <div class="ratingValue"></div>
+                        <i class="fa-solid  fa-star"></i>
+                    </div>
+                </div>
+                <a id="" class="reviewsBtn" href="">4 Reviews</a>
+            </div>
+            <div class="OpenClosedTime">
+                <% const currentDate=new Date(); const options={ timeZone: 'America/Toronto' }; let counter; const
+                    currentDay=currentDate.toLocaleDateString('en-US', { weekday: 'long' , ...options });
+                    if(currentDay==='Monday' ){ counter=0; } else if(currentDay==='Tuesday' ){ counter=1; } else
+                    if(currentDay==='Wednesday' ){ counter=2; } else if (currentDay==='Thursday' ) { counter=3; } else
+                    if (currentDay==='Friday' ) { counter=4; } else if (currentDay==='Saturday' ) { counter=5; } else if
+                    (currentDay==='Sunday' ) { counter=6; } %>
+
+
+                    <% if (truck.openingHours[counter].open === 'true'){ %>
+                        <div class="openStatus">
+                            <p style="color: rgb(106, 176, 1);">Open Today</p>
+                            <p>
+                                <%= currentDay%>
+                                    <%=truck.openingHours[counter].openingTime %> -
+                                        <%=truck.openingHours[counter].closingTime %>
+                            </p>
+                        </div>
+
+                        <% }else{ %>
+                            <div class="openStatus">
+                                <p>Closed Today</p>
+                            </div>
+                            <% } %>
+                                <br>
+                                <div id="getDirections" style="margin-right: 0; height: 215px;">
+                                    <button class="btnGreen btn"
+                                        style="border: none; background: none; background-color: rgb(93, 155, 1); cursor: pointer; font-size: 20px;"
+                                        id="getDirectionsBtn">
+                                        <i class="fa-solid fa-location-dot"></i> Get Directions
+                                    </button>
+                                </div>
+                                <div style="padding: 10px;  background-color: rgb(240, 240, 240); margin-top: 5px;">
+                                    <p style="font-size: 16px; color: #333;"><i
+                                            style="color: var(--orange); font-size: 17px; margin-right: 5px;"
+                                            class="fa-solid fa-phone"></i>
+                                        <%= truck.contactNumbers%>
+                                    </p>
+                                    <p style="font-size: 16px; color: #333;"><i
+                                            style="color: var(--orange); font-size: 17px; margin-right: 5px;"
+                                            class="fa-solid fa-envelope"></i>
+                                        <%= truck.email%>
+                                    </p>
+                                    <% if(truck.website !=='' ){%>
+                                        <p style="font-size: 16px; color: #333;"><i
+                                                style="color: var(--orange); font-size: 17px; margin-right: 5px;"
+                                                class="fa-solid fa-earth-americas"></i>
+                                            <%= truck.website%>
+                                        </p>
+                                        <%}%>
+                                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- <section class="container" id="gallerySmall">
+        <div>
+            <img src="/img/homeHeader.jpg" alt="">
+        </div>
+        <div>
+            <img src="/img/homeHeader.jpg" alt="">
+        </div>
+        <div>
+            <img src="/img/homeHeader.jpg" alt="">
+        </div>
+        <div>
+            <img src="/img/homeHeader.jpg" alt="">
+        </div>
+        <div>
+            <img src="/img/homeHeader.jpg" alt="">
+        </div>
+    </section> -->
+    <h2 class="heading container" style="font-size: 30px; padding-bottom: 0;">Offers at <%= truck.name%>
+    </h2>
+    <section class="deals container" style="margin-top: 0;padding-top: 10px;">
+        <%if(truck.discountToday>0){%>
+
+            <div class="card deal deal1" style="background-color: white;">
+                Flat <%= truck.discountToday%>% OFF On All Orders
+            </div>
+            <% } %>
+
+                <%if(truck.bogoOn.length !==0){%>
+                    <div class="card deal deal2" style="background-color: white;">
+                        Buy one get one free on <% truck.bogoOn.forEach(day=>{%> <%=day%>
+                                <% }) %>
+                    </div>
+                    <% } %>
+
+                        <%if(truck.customDiscount1!==''){ %>
+                            <div class="card deal deal3" style="background-color: white;">
+                                <%= truck.customDiscount1%>
+                            </div>
+                            <%}%>
+                                <%if(truck.customDiscount2!==''){ %>
+                                    <div class="card deal deal4" style="background-color: white;">
+                                        Flat <%= truck.discountToday%>% OFF On All Orders Today
+                                    </div>
+                                    <%}%>
+                                        <%if(truck.customDiscount3!==''){ %>
+                                            <div class="card deal deal5" style="background-color: white;">
+                                                Flat <%= truck.discountToday%>% OFF On All Orders Today
+                                            </div>
+                                            <%}%>
+
+    </section>
+
+    <section id="timing" class="container">
+        <article id="truckData" style="padding: 20px;">
+            <h2 class="heading" style="font-size: 30px; padding-bottom: 0;">Hours
+            </h2>
+            <div class="flexRow spaceBetween" style="padding: 10px; border-bottom: 1px solid gainsboro;">
+                <p style="font-size: 20px;">Monday</p>
+                <% if(truck.openingHours[0].open === 'true'){%>
+                    <p style="font-size: 20px; ">
+                        <%= new Date('1970-01-01T' + truck.openingHours[0].openingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %> - <%= new Date('1970-01-01T' + truck.openingHours[0].closingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %>
+                    </p>
+
+                    <%}else{%>
+                        <p style="font-size: 20px;">Closed</p>
+                        <%}%>
+            </div>
+            <div class="flexRow spaceBetween" style="padding: 10px; border-bottom: 1px solid gainsboro;">
+                <p style="font-size: 20px;">Tuesday</p>
+                <% if(truck.openingHours[1].open === 'true'){%>
+                    <p style="font-size: 20px; ">
+                        <%= new Date('1970-01-01T' + truck.openingHours[1].openingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %> - <%= new Date('1970-01-01T' + truck.openingHours[1].closingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %>
+                    </p>
+
+                    <%}else{%>
+                        <p style="font-size: 20px;">Closed</p>
+                        <%}%>
+            </div>
+            <div class="flexRow spaceBetween" style="padding: 10px; border-bottom: 1px solid gainsboro;">
+                <p style="font-size: 20px;">Wednesday</p>
+                <% if(truck.openingHours[2].open === 'true'){%>
+                    <p style="font-size: 20px; ">
+                        <%= new Date('1970-01-01T' + truck.openingHours[2].openingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %> - <%= new Date('1970-01-01T' + truck.openingHours[2].closingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %>
+                    </p>
+
+                    <%}else{%>
+                        <p style="font-size: 20px;">Closed</p>
+                        <%}%>
+            </div>
+            <div class="flexRow spaceBetween" style="padding: 10px; border-bottom: 1px solid gainsboro;">
+                <p style="font-size: 20px;">Thursday</p>
+                <% if(truck.openingHours[3].open === 'true'){%>
+                    <p style="font-size: 20px; ">
+                        <%= new Date('1970-01-01T' + truck.openingHours[3].openingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %> - <%= new Date('1970-01-01T' + truck.openingHours[3].closingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %>
+                    </p>
+
+                    <%}else{%>
+                        <p style="font-size: 20px;">Closed</p>
+                        <%}%>
+            </div>
+            <div class="flexRow spaceBetween" style="padding: 10px; border-bottom: 1px solid gainsboro;">
+                <p style="font-size: 20px;">Friday</p>
+                <% if(truck.openingHours[4].open === 'true'){%>
+                    <p style="font-size: 20px; ">
+                        <%= new Date('1970-01-01T' + truck.openingHours[4].openingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %> - <%= new Date('1970-01-01T' + truck.openingHours[4].closingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %>
+                    </p>
+
+                    <%}else{%>
+                        <p style="font-size: 20px;">Closed</p>
+                        <%}%>
+            </div>
+            <div class="flexRow spaceBetween" style="padding: 10px; border-bottom: 1px solid gainsboro;">
+                <p style="font-size: 20px;">Saturday</p>
+                <% if(truck.openingHours[5].open === 'true'){%>
+                    <p style="font-size: 20px; ">
+                        <%= new Date('1970-01-01T' + truck.openingHours[5].openingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %> - <%= new Date('1970-01-01T' + truck.openingHours[5].closingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %>
+                    </p>
+
+                    <%}else{%>
+                        <p style="font-size: 20px;">Closed</p>
+                        <%}%>
+            </div>
+            <div class="flexRow spaceBetween" style="padding: 10px;">
+                <p style="font-size: 20px;">Sunday</p>
+                <% if(truck.openingHours[6].open === 'true'){%>
+                    <p style="font-size: 20px; ">
+                        <%= new Date('1970-01-01T' + truck.openingHours[6].openingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %> - <%= new Date('1970-01-01T' + truck.openingHours[6].closingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %>
+
+
+                    </p>
+
+                    <%}else{%>
+                        <p style="font-size: 20px;">Closed</p>
+                        <%}%>
+            </div>
+
+        </article>
+    </section>
+    <section class="container truckDataContainer">
+        <article id="truckData">
+
+            <div class="truckData">
+                <p class="headline"><i class="fa-regular fa-calendar"></i> Serving Since:</p>
+                <p class="data">
+                    <%= truck.servingSince%>
+                </p>
+            </div>
+            <div class="truckData">
+                <p class="headline"><i class="fa-solid fa-utensils"></i> Cusines Offered:</p>
+                <p class="data">
+                    <%= truck.cusinesOffered%>
+                </p>
+            </div>
+            <div class="truckData">
+                <p class="headline"><i class="fa-solid fa-star"></i> Top 3 Dishes:</p>
+                <p class="data">1. <%= truck.threeSpecialDishes[0].dish%>
+                </p>
+                <p class="data">2. <%= truck.threeSpecialDishes[1].dish%>
+                </p>
+                <p class="data">3. <%= truck.threeSpecialDishes[2].dish%>
+                </p>
+            </div>
+            <div class="truckData">
+                <p class="headline"><i class="fa-solid fa-heart"></i> Famous For:</p>
+                <p class="data">
+                    <%= truck.famousFor%>
+                </p>
+            </div>
+            <div class="truckData">
+                <p class="headline"></i><i class="fa-solid fa-money-check-dollar"></i> Price For Two:</p>
+                <p class="data">
+                    <%= truck.priceForTwo%>$
+                </p>
+            </div>
+
+        </article>
+        <article id="truckData">
+            <div class="truckData">
+                <p class="headline">
+                    About <%= truck.name %>
+                </p>
+                <p class="data">
+                    <%= truck.description%>
+                </p>
+            </div>
+        </article>
+
+    </section>
+
+    <!-- <section class="menuAndImage">
+        <div>
+            <img src="https://images.pexels.com/photos/6280393/pexels-photo-6280393.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+        </div>
+        <div>
+            <h1 style="color: var(--orange);" class="heading">
+             <%= truck.name%>'s Food Menu
+            </h1>
+            <br>
+            <div style="width: 100%; height: 750px;">
+                <img src="https://cdn.venngage.com/template/thumbnail/small/593038bd-02f3-4487-968d-548d83eb89fb.webp" alt="">
+            </div>
+        </div>
+    </section> -->
+
+    <section class="container" id="truckData" style="background-color: transparent;box-shadow: none">
+        <div class="flexRow alignItemCenter spaceBetween">
+            <h1 class="heading">Reviews <a href=""></a></h1> <a id="viewAllBtn" href=""><i
+                    class="fa-solid fa-book-open-reader"></i>
+                Write A Review</a>
+        </div>
+        <br>
+        <section id="gridReview">
+            <div id="readReview" class="card">
+                <div class="flexRow spaceBetween alignItemCenter">
+
+                    <div class="flexRow alignItemCenter userName">
+                        <i class="fa-solid fa-user"></i> &nbsp;
+                        <p>Harsimar Kaur</p>
+                    </div>
+                    <p style="width: 45px; font-size: 14px;" class="rating flexRow alignItemCenter"> <span>5</span>
+                        &nbsp;
+                        <i class="fa-solid fa-star"></i>
+                    </p>
+                </div>
+                <br>
+                <div class="reviewText">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates facilis perferendis
+                        dignissimos
+                        aspernatur explicabo quibusdam modi, repudiandae nisi perspiciatis repellat. Error eveniet illum
+                        placeat voluptatibus!</p>
+                </div>
+            </div>
+            <div id="readReview" class="card">
+                <div class="flexRow spaceBetween alignItemCenter">
+
+                    <div class="flexRow alignItemCenter userName">
+                        <i class="fa-solid fa-user"></i> &nbsp;
+                        <p>Harsimar Kaur</p>
+                    </div>
+                    <p style="width: 45px; font-size: 14px;" class="rating flexRow alignItemCenter"> <span>5</span>
+                        &nbsp;
+                        <i class="fa-solid fa-star"></i>
+                    </p>
+                </div>
+                <br>
+                <div class="reviewText">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates facilis perferendis
+                        dignissimos
+                        aspernatur explicabo quibusdam modi, repudiandae nisi perspiciatis repellat. Error eveniet illum
+                        placeat voluptatibus!</p>
+                </div>
+            </div>
+            <div id="readReview" class="card">
+                <div class="flexRow spaceBetween alignItemCenter">
+
+                    <div class="flexRow alignItemCenter userName">
+                        <i class="fa-solid fa-user"></i> &nbsp;
+                        <p>Harsimar Kaur</p>
+                    </div>
+                    <p style="width: 45px; font-size: 14px;" class="rating flexRow alignItemCenter"> <span>5</span>
+                        &nbsp;
+                        <i class="fa-solid fa-star"></i>
+                    </p>
+                </div>
+                <br>
+                <div class="reviewText">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates facilis perferendis
+                        dignissimos
+                        aspernatur explicabo quibusdam modi, repudiandae nisi perspiciatis repellat. Error eveniet illum
+                        placeat voluptatibus!</p>
+                </div>
+            </div>
+            <div id="readReview" class="card">
+                <div class="flexRow spaceBetween alignItemCenter">
+
+                    <div class="flexRow alignItemCenter userName">
+                        <i class="fa-solid fa-user"></i> &nbsp;
+                        <p>Harsimar Kaur</p>
+                    </div>
+                    <p style="width: 45px; font-size: 14px;" class="rating flexRow alignItemCenter"> <span>5</span>
+                        &nbsp;
+                        <i class="fa-solid fa-star"></i>
+                    </p>
+                </div>
+                <br>
+                <div class="reviewText">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates facilis perferendis
+                        dignissimos
+                        aspernatur explicabo quibusdam modi, repudiandae nisi perspiciatis repellat. Error eveniet illum
+                        placeat voluptatibus!</p>
+                </div>
+            </div>
+
+
+        </section>
+    </section>
+    <br><br>
     <!-- Footer -->
     <%- include('./homeIncludes/footer.ejs') %>
 
-
         <script>
             // Add event listener to the button
-            const restaurantAddress = 'Chucks Road House, 446 Highland Road West, Kitchener'; // Replace with actual restaurant address
+            const restaurantAddress = '<%= truck.address%>'; // Replace with actual restaurant address
 
             document.getElementById('getDirectionsBtn').addEventListener('click', () => {
                 if ("geolocation" in navigator) {
@@ -119,6 +482,48 @@
                 }
             });
         </script>
+        <script>
+            window.addEventListener('DOMContentLoaded', (event) => {
+                // Get the input element and the stars container
+                const input = document.getElementById('rating');
+                const starsContainer = document.querySelector('.stars');
+
+                // Get the rating value from the input
+                const rating = parseFloat(input.value);
+
+                // Change the background color of the next 4.5*2 .ratingValue elements to rgb(223, 178, 88)
+                const ratingValues = document.querySelectorAll('.ratingValue');
+                const numRatingValuesToColor = Math.ceil(rating * 2); // Multiply by 2 because there are two .ratingValue elements per star
+                for (let i = 0; i < ratingValues.length && i < numRatingValuesToColor; i++) {
+                    ratingValues[i].style.backgroundColor = 'rgb(223, 178, 88)';
+                }
+
+                // Color the stars based on the rating value
+                const stars = starsContainer.querySelectorAll('.star');
+                stars.forEach((star, index) => {
+                    const starValue = index + 1; // Stars are 1-indexed
+                    const starDivs = star.querySelectorAll('.ratingValue');
+
+                    // Check if the star should be fully or partially filled
+                    if (starValue <= rating) {
+                        // Fill the star fully if its value is less than or equal to the rating
+                        starDivs[0].style.backgroundColor = 'rgb(223, 178, 88)';
+                        starDivs[1].style.backgroundColor = 'rgb(223, 178, 88)';
+                    } else if (starValue - 1 < rating) {
+                        // Fill the star partially if its value is just below the rating
+                        const fillPercentage = (rating - (starValue - 1)) * 100;
+                        starDivs[0].style.width = `${fillPercentage}%`;
+                        starDivs[0].style.backgroundColor = 'rgb(223, 178, 88)';
+                        starDivs[1].style.backgroundColor = 'transparent';
+                    } else {
+                        // Leave the star empty if its value is greater than the rating
+                        starDivs[0].style.backgroundColor = 'transparent';
+                        starDivs[1].style.backgroundColor = 'transparent';
+                    }
+                });
+            });
+        </script>
+
 
         <!-- Page Ends  -->
         <%- include('./homeIncludes/pageEnd.ejs') %>

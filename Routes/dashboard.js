@@ -18,7 +18,8 @@ router.get('/myTrucks', isAuth, dashboardController.getMyTrucks)
 
 // Edit Truck
 router.get('/editFoodTruck/:truckId', isAuth, dashboardController.getEditMyTruck)
-router.post('/postEditFoodTruck', [
+router.post('/postEditFoodTruck',
+ [
     body('name').custom((value => {
         if (value === '') {
             throw new Error('Please enter the name of your food truck')
