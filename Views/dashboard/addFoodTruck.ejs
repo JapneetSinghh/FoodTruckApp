@@ -22,39 +22,85 @@
                                     <!-- Dashboard Form -->
 
                                     <article class="dashboardContentContainer">
-                                        <h2 class="flexRow spaceBetween alignItemCenter" style="margin-bottom: 0;">Enter
+                                        <h2 class="flexRow spaceBetween alignItemCenter" style="margin-bottom: 0;">
+                                            <%if(url==='/editFoodTruck'){%>
+                                                Update
+                                                <%}else{%>
+                                                    Enter
+                                                    <%}%>
                                             Your Food
                                             Truck's Details </h2>
                                         <form action="<%= url === '/editFoodTruck' ? '/postEditFoodTruck' : '/addFoodTruck' %>
                                             " method="post" id="addTruckForm">
 
-                                            <input style="display:none;" type="text" name="truckId" value="<%= truckId %>" readonly>
+                                            <input style="display:none;" type="text" name="truckId"
+                                                value="<%= truckId %>" readonly>
 
                                             <!-- Truck Name -->
-                                            <label for="Food Truck Name">Food Truck Name</label>
+                                            <label for="Food Truck Name">Food Truck Name<span
+                                                    style="color: red; font-size: 14px; margin-bottom: 32px;padding-bottom: 4px;">*</span></label>
                                             <input name="name" value="<%=name%>" type="text"
                                                 placeholder="Eg: Coffee by Chuck's">
 
-                                            <label for="address">Food Truck Address As Per Google Maps</label>
-                                            <input name="address" value="<%=address%>" type="text"
-                                                placeholder="86, Feroegate, Fairway Road, Kitchener">
+
 
                                             <!-- Truck Email -->
-                                            <label for="Food Truck Email">Contact Email</label>
+                                            <label style="margin-top: 10px;" for="Food Truck Email">Contact Email<span
+                                                    style="color: red; font-size: 14px; margin-bottom: 32px;padding-bottom: 4px;">*</span></label>
                                             <input name="email" value="<%=email%>" type="email"
                                                 placeholder="CoffeByChucks@gmail.com">
+                                            <label for="address">Food Truck Address As Per Google Maps<span
+                                                    style="color: red; font-size: 14px; margin-bottom: 32px;padding-bottom: 4px;">*</span></label>
+                                            <input name="address" type="text" value="<%=address%>"
+                                                placeholder="86, Feroegate, Fairway Road, Kitchener">
 
+
+                                            <!-- Truck Image -->
+                                            <label for="Image Link">Enter Link for Truck Image<span
+                                                    style="color: red; font-size: 14px; margin-bottom: 32px;padding-bottom: 4px;">*</span></label>
+                                            <input type="text" id="imageUrlInput" name="imageUrl"
+                                                placeholder="Enter Image URL" value="<%= imageUrl%>">
+                                            <div
+                                                style="height: 500px; text-align: center; background:url(data:image/png;base64,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);">
+                                                <%if(url==='/editFoodTruck'){%>
+                                                    <img style="height: 100%; width: 100%;" id="imageDisplay" src="<%= imageUrl%>">
+
+                                                    <%}else{%>
+                                                        <img style="height: 100%; width: 100%;" id="imageDisplay" src="">
+                                                    <%}%>
+                                            </div>
+
+                                            <script>
+                                                // Get the input field and image element
+                                                const imageUrlInput = document.getElementById('imageUrlInput');
+                                                const imageDisplay = document.getElementById('imageDisplay');
+
+                                                // Add an event listener to the input field
+                                                imageUrlInput.addEventListener('input', function () {
+                                                    // Get the value entered in the input field
+                                                    const imageUrl = this.value;
+
+                                                    // Update the src attribute of the image element
+                                                    imageDisplay.src = imageUrl;
+
+   
+                                                });
+                                            </script>
                                             <!-- Truck Contact No -->
-                                            <label for="Food Truck Email">Contact Numbers</label>
+
+                                            <label for="Food Truck Email">Contact Numbers<span
+                                                    style="color: red; font-size: 14px; margin-bottom: 32px;padding-bottom: 4px;">*</span></label>
                                             <input name="contactNumbers" value="<%=contactNumbers%>" type="text"
                                                 placeholder="+1 (XXX) XXX XXXX, +1 (YYY) YYY YYYY">
 
-                                            <label for="address">Average Price For 2 People ($)</label>
+                                            <label for="">Average Price For 2 People ($)<span
+                                                    style="color: red; font-size: 14px; margin-bottom: 32px;padding-bottom: 4px;">*</span></label>
                                             <input name="priceForTwo" value="<%=priceForTwo%>" type="number"
                                                 placeholder="60">
 
                                             <!-- Days Opened and timings -->
-                                            <label for="DateAndTime">Select Food Truck's Working Days and Hours</label>
+                                            <label for="DateAndTime">Select Food Truck's Working Days and Hours<span
+                                                    style="color: red; font-size: 14px; margin-bottom: 32px;padding-bottom: 4px;">*</span></label>
                                             <div style="padding:0 15px;">
                                                 <%- include('./dashboardIncludes/addFoodTruckOpenClosed.ejs') %>
 
@@ -62,14 +108,16 @@
 
                                             </div>
                                             <!-- Cusines Offered -->
-                                            <label for="address">Cusines Offered At Your Food Truck</label>
+                                            <label for="address">Cusines Offered At Your Food Truck<span
+                                                    style="color: red; font-size: 14px; margin-bottom: 32px;padding-bottom: 4px;">*</span></label>
                                             <input type="text" name="cusinesOffered"
                                                 placeholder="Indian, Italian, Continental, Chinese..."
                                                 value="<%= cusinesOffered%>">
 
 
                                             <!-- Speciality -->
-                                            <label for="address">Enter Your 3 Special Dishes/Drinks</label>
+                                            <label for="address">Enter Your 3 Special Dishes/Drinks<span
+                                                    style="color: red; font-size: 14px; margin-bottom: 32px;padding-bottom: 4px;">*</span></label>
                                             <input type="text" name="specialDishOne" value="<%=specialDishOne%>"
                                                 placeholder="White Sauce Pasta">
                                             <input type="text" name="specialDishTwo" value="<%=specialDishTwo%>"
@@ -78,51 +126,60 @@
                                                 placeholder="Watermelon Mojito">
 
                                             <!-- Famous For -->
-                                            <label for="address">What Is Your Food Truck Famous For ?</label>
+                                            <label for="address">What Is Your Food Truck Famous For ?<span
+                                                    style="color: red; font-size: 14px; margin-bottom: 32px;padding-bottom: 4px;">*</span></label>
                                             <input name="famousFor" value="<%=famousFor%>" type="text"
                                                 placeholder="Soft Drinks, Tacos, Burgers, Late Night Music">
 
                                             <!-- Restaurant Description -->
-                                            <label for="address">Description about your food truck</label>
+                                            <label for="address">Description about your food truck<span
+                                                    style="color: red; font-size: 14px; margin-bottom: 32px;padding-bottom: 4px;">*</span></label>
                                             <textarea name="description" id=""
                                                 placeholder="Minimum 100 words"><%=description%></textarea>
 
                                             <!-- Serving Since -->
-                                            <label for="Servince Since">Serving Since</label>
+                                            <label for="Servince Since">Serving Since<span
+                                                    style="color: red; font-size: 14px; margin-bottom: 32px;padding-bottom: 4px;">*</span></label>
                                             <%if(url==='/editFoodTruck'){%>
                                                 <input value="<%=year%>" type="text" readonly>
                                                 <%}else{%>
-                                                    <select style="padding: 10px; border-radius: 10px; font-size: 16px; background-color: rgba(246, 212, 144, 0.431); border: none;" id="yearSelect" name="year">
-                                                        <% for (let year = 2024; year >= 1900; year--) { %>
-                                                            <option style="padding: 6px; border-radius: 10px;" value="<%= year %>">
+                                                    <select
+                                                        style="padding: 10px; border-radius: 10px; font-size: 16px; background-color: rgba(246, 212, 144, 0.431); border: none;"
+                                                        id="yearSelect" name="year">
+                                                        <% for (let year=2024; year>= 1900; year--) { %>
+                                                            <option style="padding: 6px; border-radius: 10px;"
+                                                                value="<%= year %>">
                                                                 <%= year %>
                                                             </option>
-                                                        <% } %>
+                                                            <% } %>
                                                     </select>
                                                     <%}%>
 
 
                                                         <!-- Famous For -->
-                                                        <label for="address">Discount today</label>
+                                                        <label for="address">Discount today<span
+                                                                style="color: red; font-size: 14px; margin-bottom: 32px;padding-bottom: 4px;">*</span></label>
                                                         <select
                                                             style="padding: 10px; border-radius: 10px; font-size: 16px; background-color: rgba(246, 212, 144, 0.431); border: none;"
                                                             name="discountToday" id="yearSelect">
                                                             <%if(url==='/editFoodTruck'){%>
                                                                 <option style="padding: 6px; border-radius: 10px;"
-                                                                value="<%= discountToday %>">
-                                                                FLAT <%= discountToday %>% OFF
-                                                            </option>
-                                                            <%}%>
-                                                            <option style="padding: 6px; border-radius: 10px;"
-                                                                value="0">
-                                                                FLAT 0% OFF
-                                                            </option>
-                                                            <% for (let discount=1; discount<=20; discount++) { %>
-                                                                <option style="padding: 6px; border-radius: 10px;"
-                                                                    value="<%= discount*5 %>">
-                                                                    Flat <%= discount*5 %> % OFF
+                                                                    value="<%= discountToday %>">
+                                                                    FLAT <%= discountToday %>% OFF
                                                                 </option>
-                                                                <% } %>
+                                                                <%}%>
+                                                                    <option style="padding: 6px; border-radius: 10px;"
+                                                                        value="0">
+                                                                        FLAT 0% OFF
+                                                                    </option>
+                                                                    <% for (let discount=1; discount<=20; discount++) {
+                                                                        %>
+                                                                        <option
+                                                                            style="padding: 6px; border-radius: 10px;"
+                                                                            value="<%= discount*5 %>">
+                                                                            Flat <%= discount*5 %> % OFF
+                                                                        </option>
+                                                                        <% } %>
                                                         </select>
 
                                                         <!-- BOGO OFFER -->
@@ -179,7 +236,9 @@
                                                                                 <!-- WEBSITE LINK IF ANY -->
                                                                                 <label for="address">Website
                                                                                     Link</label>
-                                                                                <input name="website" type="text"placeholder="Chucls.ca" value="<%= website%>">
+                                                                                <input name="website" type="text"
+                                                                                    placeholder="Chucls.ca"
+                                                                                    value="<%= website%>">
 
                                                                                 <div class="alignCenter">
                                                                                     <button id="submitButton"
@@ -196,6 +255,6 @@
         </main>
         <script src="/js/dashboardSidebar.js"></script>
 
-        
+
         <!-- Page Ends  -->
         <%- include('../homeIncludes/pageEnd.ejs') %>

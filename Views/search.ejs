@@ -1,0 +1,257 @@
+<!-- Page Start HTML -->
+<%- include('./homeIncludes/header.ejs') %>
+    <!-- Header -->
+    <header>
+        <!-- Navbar -->
+        <%- include('./homeIncludes/navbar.ejs') %>
+
+            <!-- Header Container -->
+            <div id="headerContainer">
+
+            </div>
+
+            <!-- Search Bar -->
+            <%- include('./homeIncludes/searchBar.ejs') %>
+    </header>
+    <section class="container" style="min-height: 50vh;">
+        <% if(search==='' ){%>
+            <p style="font-size:25px ; margin: 20px 0; padding: 20px;  border-bottom: 1px solid gainsboro;" class="">
+                Search field can't be empty, Try searching for a <span style="color: var(--beige);"> Region, Food
+                    Trucks, Cusines or Dishes </span>
+            </p>
+
+            <%} else if(truck.length===0){%>
+                <p style="font-size:25px ; margin: 20px 0; padding: 20px; border-bottom: 1px solid gainsboro; "
+                    class="">
+                    Sorry, No results found for <span style="color: var(--beige);"> '<%= search%>' </span>
+                </p>
+
+                <%}else{%>
+                    <p style="font-size:25px ; margin: 20px 0; padding: 20px;   border-bottom: 1px solid gainsboro;"
+                        class="">
+                        Results for <span style="color: var(--beige);"> '<%= search%>' </span> </p>
+
+
+                    <% truck.forEach(foodTruck=> { %>
+                        <!-- Your Trucks -->
+                        <article id="savedTrucks" class="dashboardContentContainer">
+
+                            <section id="myTruck">
+                                <div class="myTruckImage"
+                                    >
+                                    <img style="width: 100%; "  src="<%= foodTruck.images[0].mainImage%>" alt="">
+                                </div>
+                                <div class="myTruckContent" style="padding: 20px 35px;">
+                                    <div style="margin-top: 10px;" class="flexRow spaceBetween alignItemCenter">
+                                        <h3 class="heading">
+                                            <%= foodTruck.name%>
+                                        </h3>
+                                        <div class="flexRow">
+                                            <p style="display: inline-block;" id="" class="reviewsBtn"
+                                                href="#reviewScroll">
+                                                <%= foodTruck.testimonials.length %> Reviews
+                                            </p> &nbsp;
+
+                                            <p class="rating flexRow alignItemCenter"> <span>
+                                                    <%= foodTruck.rating%>
+                                                </span> &nbsp; <i class="fa-solid fa-star"></i></p>
+                                        </div>
+
+                                    </div>
+                                    <div class="flexRow alignItemCenter truckGridLocation">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        <p>
+                                            <%= foodTruck.address%>
+                                        </p>
+                                    </div>
+
+
+                                    <p style="font-size: 15px; color: rgb(132, 132, 132);">
+                                        <%= foodTruck.description%>
+                                    </p>
+
+   
+                                    <p style="font-weight: 500; margin-left: 2px;">Speciality</p>
+                                    <div class="gridTags" style="font-size: 16px; text-align: left;">
+                                        <p style="font-size: 12px; font-weight: 400; padding:10px 9px;">
+                                            <%=foodTruck.threeSpecialDishes[0].dish%>
+                                        </p>
+                                        <p style="font-size: 12px; font-weight: 400; padding:10px 9px">
+                                            <%=foodTruck.threeSpecialDishes[1].dish%>
+                                        </p>
+                                        <p style="font-size: 12px; font-weight: 400; padding:10px 9px">
+                                            <%=foodTruck.threeSpecialDishes[2].dish%>
+                                        </p>
+                                    </div>
+                                    <p>Cusines Offered: <%= foodTruck.cusinesOffered %>
+                                    </p>
+                                    <p>Famous For: <%= foodTruck.famousFor %>
+                                    </p>
+
+                                    <% const currentDate=new Date(); const options={ timeZone: 'America/Toronto' }; let counter; const
+                                    currentDay=currentDate.toLocaleDateString('en-US', { weekday: 'long' , ...options });
+                                    if(currentDay==='Monday' ){ counter=0; } else if(currentDay==='Tuesday' ){ counter=1; } else
+                                    if(currentDay==='Wednesday' ){ counter=2; } else if (currentDay==='Thursday' ) { counter=3; } else
+                                    if (currentDay==='Friday' ) { counter=4; } else if (currentDay==='Saturday' ) { counter=5; } else if
+                                    (currentDay==='Sunday' ) { counter=6; } %>
+                
+                
+                                    <% if (foodTruck.openingHours[counter].open==='true' ){ %>
+                                        <div class="openStatus">
+                                            <p style="color: rgb(106, 176, 1);">Open Today</p>
+                                            <p>
+                                                <%= currentDay%>
+                                                <%= new Date('1970-01-01T' + foodTruck.openingHours[counter].openingTime).toLocaleString('en-US', {
+                                                    hour: 'numeric' , minute: '2-digit' , hour12: true }) %> - <%= new Date('1970-01-01T' +
+                                                        foodTruck.openingHours[counter].closingTime).toLocaleString('en-US', { hour: 'numeric' ,
+                                                        minute: '2-digit' , hour12: true }) %>
+                        
+                                            </p>
+                                        </div>
+                
+                                        <% }else{ %>
+                                            <div class="openStatus">
+                                                <p style="color: red;">Closed Today</p>
+                                            </div>
+                                            <% } %>
+                                    <div class="flexRow spaceBetween">
+
+                                        <p style="color: rgb(223, 178, 88);"><i class="fa-solid fa-envelope"></i>
+                                            <%= foodTruck.email%>
+                                        </p>
+                                        <p style="color: rgb(223, 178, 88);"><i class="fa-solid fa-phone"></i>
+                                            <%= foodTruck.contactNumbers%>
+                                        </p>
+                                    </div>
+                                    <br>
+                                    <div style="padding-top: 15px;" class="flexRow spaceBetween alignItemCenter">
+                                        <a href="/foodTrucks/<%= foodTruck._id%>" id="viewAllBtn">View <i
+                                                class="fa-solid fa-eye"></i></a>
+                                    </div>
+                                </div>
+                            </section>
+                        </article>
+                        <!-- <section class="dashboardContentContainer">
+                            <h1 style="font-size: 28px; letter-spacing: 1px;" class="heading">
+                                <%= foodTruck.name %>
+                            </h1>
+                            <p>ID: <input type="text" readonly value="<%= foodTruck._id %>"></p>
+
+                            <p>
+                                <%= foodTruck.address %>
+                            </p>
+                            <p>Price for two: <%= foodTruck.priceForTwo %>
+                                    <p>Email: <%= foodTruck.email %>
+                                            <p>contactNumbers: <%= foodTruck.contactNumbers %>
+                                            </p>
+                                            <br>
+                                            <p>Opening Hours: </p>
+
+                                            <% foodTruck.openingHours.forEach((hour, index)=> { %>
+
+                                                <% let
+                                                    openingTime=foodTruck.openingHours[index].openingTime;
+                                                    let openingHour=parseInt(openingTime.split(':')[0]); %>
+                                                    <% let openingPeriod=(openingHour>=12) ? "PM" : "AM";
+                                                        let openingDisplayHour = (openingHour > 12) ?
+                                                        openingHour -
+                                                        12 :
+                                                        openingHour;
+
+                                                        let closingTime =
+                                                        foodTruck.openingHours[index].closingTime;
+                                                        let closingHour =
+                                                        parseInt(closingTime.split(':')[0]);
+                                                        let closingPeriod = (closingHour >= 12) ? "PM" :
+                                                        "AM";
+                                                        let closingDisplayHour = (closingHour > 12) ?
+                                                        closingHour -
+                                                        12 :
+                                                        closingHour;
+
+                                                        %>
+
+                                                        <p><span>
+                                                                <%= foodTruck.openingHours[index].day %>
+                                                            </span>
+                                                            <% if
+                                                                (foodTruck.openingHours[index].open==='true'
+                                                                ) { %>
+                                                                Open <br>
+                                                                <span>
+                                                                    <%= openingDisplayHour %>:<%=
+                                                                            openingTime.split(':')[1] %>
+                                                                            <%= openingPeriod %> to
+                                                                </span>
+                                                                <span>
+                                                                    <%= closingDisplayHour %>:<%=
+                                                                            closingTime.split(':')[1] %>
+                                                                            <%= closingPeriod %>
+                                                                </span>
+                                                                <% } else { %>
+                                                                    Closed
+                                                                    <% } %>
+
+                                                        </p>
+                                                        <% }) %>
+                                                            <br>
+                                                            <p>Special Dish One <%=
+                                                                    foodTruck.threeSpecialDishes[0].dish %>
+                                                            </p>
+                                                            <p>Special Dish Two <%=
+                                                                    foodTruck.threeSpecialDishes[1].dish %>
+                                                            </p>
+                                                            <p>Special Dish Three <%=
+                                                                    foodTruck.threeSpecialDishes[2].dish %>
+                                                            </p>
+                                                            <br>
+                                                            <p>Cusines Offered: <%= foodTruck.cusinesOffered
+                                                                    %>
+                                                            </p>
+                                                            <p>Famous For <%= foodTruck.famousFor %>
+                                                            </p>
+                                                            <br>
+                                                            <p>Description <%= foodTruck.description %>
+                                                            </p>
+                                                            <br>
+                                                            <p>Serving Since <%= foodTruck.servingSince %>
+                                                            </p>
+                                                            <p>Bogo On: <% foodTruck.bogoOn.forEach(day=> {
+                                                                    %>
+                                                                    <%= day%> &nbsp;
+                                                                        <% })%>
+                                                            </p>
+                                                            <% if(foodTruck.customDiscount1==='' ){}else{ %>
+                                                                <p>Custom Discount 1: <%=
+                                                                        foodTruck.customDiscount1%>
+                                                                </p>
+                                                                <%} %>
+                                                                    <% if(foodTruck.customDiscount2===''
+                                                                        ){}else{ %>
+                                                                        <p>Custom Discount 2: <%=
+                                                                                foodTruck.customDiscount2%>
+                                                                        </p>
+                                                                        <%} %>
+                                                                            <% if(foodTruck.customDiscount3===''
+                                                                                ){}else{ %>
+                                                                                <p>Custom Discount 3: <%=
+                                                                                        foodTruck.customDiscount3%>
+                                                                                </p>
+                                                                                <%} %>
+
+                                                                                    <a
+                                                                                        href="/upload-images/<%= foodTruck._id%>">Images</a>
+                                                                                    <br><br>
+                                                                                    <a id="logoutBtn"
+                                                                                        href="/editFoodTruck/<%= foodTruck._id%>">Edit</a>
+                        </section> -->
+                        <% }) %>
+
+                            <%}%>
+    </section>
+
+    <!-- Footer -->
+    <%- include('./homeIncludes/footer.ejs') %>
+
+        <!-- Page Ends  -->
+        <%- include('./homeIncludes/pageEnd.ejs') %>

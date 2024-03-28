@@ -17,11 +17,17 @@
                 </div>
             </ul>
             <%if(isLoggedIn){%>
-                <ul>
+                <ul class="alignItemCenter">
                     <li><a style="font-size: 25px; letter-spacing: 2px;" class="btnDashboard flexRow alignItemCenter"
                             href="/dashboard"><i style="font-size: 25px; margin-right: 8px;"
                                 class="fa-solid fa-user"></i> Dashboard</a>
                     </li>
+                    <% console.log("User ID:", user._id); %>
+                        <% console.log("Truck User ID:", truck.userId); %>
+                            <%if(user._id.toString()===truck.userId.toString()){%>
+                                <li><a id="logoutBtn" href="/editFoodTruck/<%=truck._id%>"><i
+                                            class="fa-solid fa-pencil"></i> Edit</a></li>
+                                <%}%>
                 </ul>
                 <%}else{%>
                     <ul class="navBtns">
@@ -57,12 +63,12 @@
     <!-- Truck Image -->
     <section id="foodTruckPageHeader" class="container" style="padding-bottom: 0;">
         <div id="foodTruckImage" style="margin-left: 0;">
-            <img src="/img/homeHeader.jpg" alt="">
+            <img src="<%= truck.images[0].mainImage%>" alt="">
         </div>
         <div id="imageAside" style="margin-right: 0;">
             <!-- Rating -->
             <div class="ratingContainer">
-                <input id="rating" type="text" style="display: none;" readonly name="" id="" value="4.5">
+                <input id="rating" type="text" style="display: none;" readonly name="" id="" value="<%=truck.rating %>">
                 <div class="stars">
                     <div class="star">
                         <div class="ratingValue"></div>
@@ -90,7 +96,9 @@
                         <i class="fa-solid  fa-star"></i>
                     </div>
                 </div>
-                <a id="" class="reviewsBtn" href="">4 Reviews</a>
+                <a id="" class="reviewsBtn" href="#reviewScroll">
+                    <%= truck.testimonials.length %> Reviews
+                </a>
             </div>
             <div class="OpenClosedTime">
                 <% const currentDate=new Date(); const options={ timeZone: 'America/Toronto' }; let counter; const
@@ -101,7 +109,7 @@
                     (currentDay==='Sunday' ) { counter=6; } %>
 
 
-                    <% if (truck.openingHours[counter].open === 'true'){ %>
+                    <% if (truck.openingHours[counter].open==='true' ){ %>
                         <div class="openStatus">
                             <p style="color: rgb(106, 176, 1);">Open Today</p>
                             <p>
@@ -188,12 +196,12 @@
                             <%}%>
                                 <%if(truck.customDiscount2!==''){ %>
                                     <div class="card deal deal4" style="background-color: white;">
-                                        Flat <%= truck.discountToday%>% OFF On All Orders Today
+                                        <%= truck.customDiscount2%>
                                     </div>
                                     <%}%>
                                         <%if(truck.customDiscount3!==''){ %>
                                             <div class="card deal deal5" style="background-color: white;">
-                                                Flat <%= truck.discountToday%>% OFF On All Orders Today
+                                                <%= truck.customDiscount3%>
                                             </div>
                                             <%}%>
 
@@ -205,9 +213,12 @@
             </h2>
             <div class="flexRow spaceBetween" style="padding: 10px; border-bottom: 1px solid gainsboro;">
                 <p style="font-size: 20px;">Monday</p>
-                <% if(truck.openingHours[0].open === 'true'){%>
+                <% if(truck.openingHours[0].open==='true' ){%>
                     <p style="font-size: 20px; ">
-                        <%= new Date('1970-01-01T' + truck.openingHours[0].openingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %> - <%= new Date('1970-01-01T' + truck.openingHours[0].closingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %>
+                        <%= new Date('1970-01-01T' + truck.openingHours[0].openingTime).toLocaleString('en-US', {
+                            hour: 'numeric' , minute: '2-digit' , hour12: true }) %> - <%= new Date('1970-01-01T' +
+                                truck.openingHours[0].closingTime).toLocaleString('en-US', { hour: 'numeric' ,
+                                minute: '2-digit' , hour12: true }) %>
                     </p>
 
                     <%}else{%>
@@ -216,9 +227,12 @@
             </div>
             <div class="flexRow spaceBetween" style="padding: 10px; border-bottom: 1px solid gainsboro;">
                 <p style="font-size: 20px;">Tuesday</p>
-                <% if(truck.openingHours[1].open === 'true'){%>
+                <% if(truck.openingHours[1].open==='true' ){%>
                     <p style="font-size: 20px; ">
-                        <%= new Date('1970-01-01T' + truck.openingHours[1].openingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %> - <%= new Date('1970-01-01T' + truck.openingHours[1].closingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %>
+                        <%= new Date('1970-01-01T' + truck.openingHours[counter].openingTime).toLocaleString('en-US', {
+                            hour: 'numeric' , minute: '2-digit' , hour12: true }) %> - <%= new Date('1970-01-01T' +
+                                truck.openingHours[counter].closingTime).toLocaleString('en-US', { hour: 'numeric' ,
+                                minute: '2-digit' , hour12: true }) %>
                     </p>
 
                     <%}else{%>
@@ -227,9 +241,12 @@
             </div>
             <div class="flexRow spaceBetween" style="padding: 10px; border-bottom: 1px solid gainsboro;">
                 <p style="font-size: 20px;">Wednesday</p>
-                <% if(truck.openingHours[2].open === 'true'){%>
+                <% if(truck.openingHours[2].open==='true' ){%>
                     <p style="font-size: 20px; ">
-                        <%= new Date('1970-01-01T' + truck.openingHours[2].openingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %> - <%= new Date('1970-01-01T' + truck.openingHours[2].closingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %>
+                        <%= new Date('1970-01-01T' + truck.openingHours[2].openingTime).toLocaleString('en-US', {
+                            hour: 'numeric' , minute: '2-digit' , hour12: true }) %> - <%= new Date('1970-01-01T' +
+                                truck.openingHours[2].closingTime).toLocaleString('en-US', { hour: 'numeric' ,
+                                minute: '2-digit' , hour12: true }) %>
                     </p>
 
                     <%}else{%>
@@ -238,9 +255,12 @@
             </div>
             <div class="flexRow spaceBetween" style="padding: 10px; border-bottom: 1px solid gainsboro;">
                 <p style="font-size: 20px;">Thursday</p>
-                <% if(truck.openingHours[3].open === 'true'){%>
+                <% if(truck.openingHours[3].open==='true' ){%>
                     <p style="font-size: 20px; ">
-                        <%= new Date('1970-01-01T' + truck.openingHours[3].openingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %> - <%= new Date('1970-01-01T' + truck.openingHours[3].closingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %>
+                        <%= new Date('1970-01-01T' + truck.openingHours[3].openingTime).toLocaleString('en-US', {
+                            hour: 'numeric' , minute: '2-digit' , hour12: true }) %> - <%= new Date('1970-01-01T' +
+                                truck.openingHours[3].closingTime).toLocaleString('en-US', { hour: 'numeric' ,
+                                minute: '2-digit' , hour12: true }) %>
                     </p>
 
                     <%}else{%>
@@ -249,9 +269,12 @@
             </div>
             <div class="flexRow spaceBetween" style="padding: 10px; border-bottom: 1px solid gainsboro;">
                 <p style="font-size: 20px;">Friday</p>
-                <% if(truck.openingHours[4].open === 'true'){%>
+                <% if(truck.openingHours[4].open==='true' ){%>
                     <p style="font-size: 20px; ">
-                        <%= new Date('1970-01-01T' + truck.openingHours[4].openingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %> - <%= new Date('1970-01-01T' + truck.openingHours[4].closingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %>
+                        <%= new Date('1970-01-01T' + truck.openingHours[4].openingTime).toLocaleString('en-US', {
+                            hour: 'numeric' , minute: '2-digit' , hour12: true }) %> - <%= new Date('1970-01-01T' +
+                                truck.openingHours[4].closingTime).toLocaleString('en-US', { hour: 'numeric' ,
+                                minute: '2-digit' , hour12: true }) %>
                     </p>
 
                     <%}else{%>
@@ -260,9 +283,12 @@
             </div>
             <div class="flexRow spaceBetween" style="padding: 10px; border-bottom: 1px solid gainsboro;">
                 <p style="font-size: 20px;">Saturday</p>
-                <% if(truck.openingHours[5].open === 'true'){%>
+                <% if(truck.openingHours[5].open==='true' ){%>
                     <p style="font-size: 20px; ">
-                        <%= new Date('1970-01-01T' + truck.openingHours[5].openingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %> - <%= new Date('1970-01-01T' + truck.openingHours[5].closingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %>
+                        <%= new Date('1970-01-01T' + truck.openingHours[5].openingTime).toLocaleString('en-US', {
+                            hour: 'numeric' , minute: '2-digit' , hour12: true }) %> - <%= new Date('1970-01-01T' +
+                                truck.openingHours[5].closingTime).toLocaleString('en-US', { hour: 'numeric' ,
+                                minute: '2-digit' , hour12: true }) %>
                     </p>
 
                     <%}else{%>
@@ -271,9 +297,12 @@
             </div>
             <div class="flexRow spaceBetween" style="padding: 10px;">
                 <p style="font-size: 20px;">Sunday</p>
-                <% if(truck.openingHours[6].open === 'true'){%>
+                <% if(truck.openingHours[6].open==='true' ){%>
                     <p style="font-size: 20px; ">
-                        <%= new Date('1970-01-01T' + truck.openingHours[6].openingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %> - <%= new Date('1970-01-01T' + truck.openingHours[6].closingTime).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %>
+                        <%= new Date('1970-01-01T' + truck.openingHours[6].openingTime).toLocaleString('en-US', {
+                            hour: 'numeric' , minute: '2-digit' , hour12: true }) %> - <%= new Date('1970-01-01T' +
+                                truck.openingHours[6].closingTime).toLocaleString('en-US', { hour: 'numeric' ,
+                                minute: '2-digit' , hour12: true }) %>
 
 
                     </p>
@@ -352,93 +381,40 @@
     </section> -->
 
     <section class="container" id="truckData" style="background-color: transparent;box-shadow: none">
-        <div class="flexRow alignItemCenter spaceBetween">
-            <h1 class="heading">Reviews <a href=""></a></h1> <a id="viewAllBtn" href=""><i
-                    class="fa-solid fa-book-open-reader"></i>
+        <div id="reviewScroll" class="flexRow alignItemCenter spaceBetween">
+            <h1 class="heading">Reviews <a href=""></a></h1>
+            <a id="viewAllBtn" href="/writeReview/<%=truck._id%>"><i class="fa-solid fa-book-open-reader"></i>
                 Write A Review</a>
         </div>
         <br>
         <section id="gridReview">
-            <div id="readReview" class="card">
-                <div class="flexRow spaceBetween alignItemCenter">
+            <%truck.testimonials.forEach(testimonial=>{ %>
+                <div id="readReview" class="card">
+                    <div class="flexRow spaceBetween alignItemCenter">
 
-                    <div class="flexRow alignItemCenter userName">
-                        <i class="fa-solid fa-user"></i> &nbsp;
-                        <p>Harsimar Kaur</p>
+                        <div class="flexRow alignItemCenter userName">
+                            <i class="fa-solid fa-user"></i> &nbsp;
+                            <p>
+                                <%= testimonial.name%>
+                            </p>
+                        </div>
+                        <p style="width: 45px; font-size: 14px;" class="rating flexRow alignItemCenter"> <span>
+                                <%= testimonial.rating %>
+                            </span>
+                            &nbsp;
+                            <i class="fa-solid fa-star"></i>
+                        </p>
                     </div>
-                    <p style="width: 45px; font-size: 14px;" class="rating flexRow alignItemCenter"> <span>5</span>
-                        &nbsp;
-                        <i class="fa-solid fa-star"></i>
-                    </p>
+                    <br>
+                    <div class="reviewText">
+                        <p>
+                            <%= testimonial.review%>
+                        </p>
+                    </div>
                 </div>
-                <br>
-                <div class="reviewText">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates facilis perferendis
-                        dignissimos
-                        aspernatur explicabo quibusdam modi, repudiandae nisi perspiciatis repellat. Error eveniet illum
-                        placeat voluptatibus!</p>
-                </div>
-            </div>
-            <div id="readReview" class="card">
-                <div class="flexRow spaceBetween alignItemCenter">
 
-                    <div class="flexRow alignItemCenter userName">
-                        <i class="fa-solid fa-user"></i> &nbsp;
-                        <p>Harsimar Kaur</p>
-                    </div>
-                    <p style="width: 45px; font-size: 14px;" class="rating flexRow alignItemCenter"> <span>5</span>
-                        &nbsp;
-                        <i class="fa-solid fa-star"></i>
-                    </p>
-                </div>
-                <br>
-                <div class="reviewText">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates facilis perferendis
-                        dignissimos
-                        aspernatur explicabo quibusdam modi, repudiandae nisi perspiciatis repellat. Error eveniet illum
-                        placeat voluptatibus!</p>
-                </div>
-            </div>
-            <div id="readReview" class="card">
-                <div class="flexRow spaceBetween alignItemCenter">
+                <%})%>
 
-                    <div class="flexRow alignItemCenter userName">
-                        <i class="fa-solid fa-user"></i> &nbsp;
-                        <p>Harsimar Kaur</p>
-                    </div>
-                    <p style="width: 45px; font-size: 14px;" class="rating flexRow alignItemCenter"> <span>5</span>
-                        &nbsp;
-                        <i class="fa-solid fa-star"></i>
-                    </p>
-                </div>
-                <br>
-                <div class="reviewText">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates facilis perferendis
-                        dignissimos
-                        aspernatur explicabo quibusdam modi, repudiandae nisi perspiciatis repellat. Error eveniet illum
-                        placeat voluptatibus!</p>
-                </div>
-            </div>
-            <div id="readReview" class="card">
-                <div class="flexRow spaceBetween alignItemCenter">
-
-                    <div class="flexRow alignItemCenter userName">
-                        <i class="fa-solid fa-user"></i> &nbsp;
-                        <p>Harsimar Kaur</p>
-                    </div>
-                    <p style="width: 45px; font-size: 14px;" class="rating flexRow alignItemCenter"> <span>5</span>
-                        &nbsp;
-                        <i class="fa-solid fa-star"></i>
-                    </p>
-                </div>
-                <br>
-                <div class="reviewText">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates facilis perferendis
-                        dignissimos
-                        aspernatur explicabo quibusdam modi, repudiandae nisi perspiciatis repellat. Error eveniet illum
-                        placeat voluptatibus!</p>
-                </div>
-            </div>
 
 
         </section>
@@ -449,7 +425,7 @@
 
         <script>
             // Add event listener to the button
-            const restaurantAddress = '<%= truck.address%>'; // Replace with actual restaurant address
+            const restaurantAddress = '<%= truck.name%> <%= truck.address%>'; // Replace with actual restaurant address
 
             document.getElementById('getDirectionsBtn').addEventListener('click', () => {
                 if ("geolocation" in navigator) {

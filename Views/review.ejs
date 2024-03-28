@@ -1,0 +1,111 @@
+<!-- Page Start HTML -->
+<%- include('./homeIncludes/header.ejs') %>
+
+
+    <!-- Navbar -->
+    <button class="responsiveOpenBtn"><i class="fa-solid fa-bars"></i></button>
+    <nav id="navbar" class="responsiveNavbar">
+        <div class="listContainer foodTruckNav">
+
+            <ul>
+                <div class="logoNav"><a href="/"><img src="/img/logo.png" alt=""></a></div>
+            </ul>
+            <ul>
+                <!-- Search Bar -->
+                <div class="foodTruckPageSearch">
+                    <%- include('./homeIncludes/searchBar.ejs') %>
+                </div>
+            </ul>
+            <%if(isLoggedIn){%>
+                <ul class="alignItemCenter">
+                    <li><a style="font-size: 25px; letter-spacing: 2px;" class="btnDashboard flexRow alignItemCenter"
+                            href="/dashboard"><i style="font-size: 25px; margin-right: 8px;"
+                                class="fa-solid fa-user"></i> Dashboard</a>
+                    </li>
+                    <% console.log("User ID:", user._id); %>
+                        <% console.log("Truck User ID:", truck.userId); %>
+                            <%if(user._id.toString()===truck.userId.toString()){%>
+                                <li><a id="logoutBtn" href="/editFoodTruck/<%=truck._id%>"><i
+                                            class="fa-solid fa-pencil"></i> Edit</a></li>
+                                <%}%>
+                </ul>
+                <%}else{%>
+                    <ul class="navBtns">
+                        <li><a class="btnOrange" href="/signup">Add Your Food Truck</a></li>
+                        <li><a class="btnBeige" href="/login">Login</a></li>
+                    </ul>
+                    <%}%>
+
+        </div>
+        <div class="icons">
+            <a href=""> <i class="fa-brands fa-instagram"></i> </a>
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+            <a href=""><i class="fa-brands fa-x-twitter"></i></a>
+            <a href=""> <i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <div>
+            <button class="closeNavBar"> <i class="fa-solid fa-arrow-left"></i></button>
+        </div>
+    </nav>
+    <!-- Truck Name -->
+    <section class="container" style="padding-bottom: 0;">
+        <div style="margin:0 8px;">
+            <h1 class="heading">
+                <%= truck.name%>
+            </h1>
+            <p style="font-size: 18px; letter-spacing: 2px;"> <i style="color:  rgb(223, 178, 88);"
+                    class="fa-solid fa-location-dot"></i>
+                <%= truck.address%>
+            </p>
+        </div>
+
+    </section>
+    <section style="min-height: 500px; display: grid; place-items: center;">
+
+        <div style="max-width: 1000px; " id="readReview" class="card">
+            <form action="/addReview" method="post">
+            <div class="flexRow spaceBetween alignItemCenter">
+                    <div class="flexRow alignItemCenter userName">
+                        <i class="fa-solid fa-user"></i> &nbsp;
+                        <input type="text" readonly style="display: none;" name="name" id=""
+                            value="<%= user.firstName%> <%= user.lastName%>">
+                        <p>
+                            <%= user.firstName%>
+                                <%= user.lastName%>
+                        </p>
+                    </div>
+                   
+            </div>
+            <br>
+
+            <div class="reviewText">
+                <textarea style="width: 100%;padding: 20px;font-size: 16px;" name="review" id="" cols="30" rows="10"
+                    placeholder="Write Review"></textarea>
+            </div>
+            <div class="ratingReview">
+                <% for(let i=5; i>=1; i--) { %>
+                    <input type="radio" id="star<%= i %>" name="rating" value="<%= i %>"
+                        onclick="updateRating(<%= i %>)" <% if(i===4) { %>checked<% } %>/>
+                        <label for="star<%= i %>">&#9733;</label>
+                        <% } %>
+            </div>
+            <input type="hidden" name="ratingGiven" id="ratingGiven" value="4">
+            <input type="hidden" name="truckId" id="ratingGiven" value="<%= truck._id%>">
+            <div style="text-align: right;">
+                <button id="viewAllBtn" type="submit">Submit Review</button>
+            </div>
+            </form>
+            <script>
+                function updateRating(value) {
+                    document.getElementById('ratingGiven').value = value;
+                }
+            </script>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <%- include('./homeIncludes/footer.ejs') %>
+
+        <!-- Page Ends  -->
+        <%- include('./homeIncludes/pageEnd.ejs') %>

@@ -7,17 +7,18 @@
     </div>
     <nav class="sidebarNav flexColumn spaceBetween" style="height: 90%;">
         <div>
-            <img src="/img/logo.png" alt="">
+         <a href="/"><img src="/img/logo.png" alt=""></a> 
         </div>
         <div class="sidebarList">
             <ul class="flexColumn">
-                <li><a href="/dashboard" class="active"><i class="fa-solid fa-table-cells-large"></i>Dashboard</a></li>
-                <li><a href="/addFoodTruck"><i class="fa-solid fa-plus flexRow alignItemCenter"></i> Add Food Truck</a></li>
-                <li><a href="/myTrucks"><i class="fa-solid fa-truck-front"></i> My Food Trucks</a></li>
-                <li><a href=""><i class="fa-solid fa-heart"></i> Favorites </a></li>
-                <li><a href=""><i class="fa-solid fa-comment-dots"></i> My Feedbacks </a></li>
+                <li><a href="/dashboard"  <%if(url==='/dashboard'){%> class="active" <%}%> ><i class="fa-brands fa-buromobelexperte"></i>Dashboard</a></li>
+                <li><a href="/addFoodTruck" <%if(url==='/addFoodTruck'){%> class="active" <%}%> ><i class="fa-solid fa-plus flexRow alignItemCenter"></i> Add Food Truck</a></li>
+                <li><a href="/myTrucks"  <%if(url==='/myTrucks'){%> class="active" <%}%>><i class="fa-solid fa-eye"></i> My Food Trucks</a></li>
+                <!-- <li><a href="/Favorites"><i class="fa-solid fa-heart"></i> Favorites </a></li> -->
+                <!-- <li><a href="/myFeedbacks"  <%if(url==='/myFeedbacks'){%> class="active" <%}%>><i class="fa-solid fa-comment-dots"></i> My Feedbacks </a></li> -->
             </ul>
         </div>
+
         
         <!-- Log Out Form -->
         <form action="/logout" method="post">

@@ -79,8 +79,8 @@ const foodTruckSchema = new Schema({
         type:String,
         required:false
     },
-    ratings:{
-        type:Array,
+    rating:{
+        type:Number,
         required:false
     },
     testimonials:{

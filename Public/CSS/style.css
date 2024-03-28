@@ -11,6 +11,10 @@
     box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 nav {
     display: flex;
     flex-direction: column;
@@ -74,10 +78,12 @@ header {
 
 #headerContainer p {
     color: rgb(255, 255, 255);
-    font-size: 20px;
+    font-size: 22px;
     font-family: "Poppins", sans-serif;
-    font-weight: 200;
+    font-weight: 400;
     font-style: normal;
+    border-left: 7px solid white;
+    padding-left: 10px;
 }
 
 #headerContainer {
@@ -98,23 +104,47 @@ header {
 
 .logoHeader img {
     padding: 20px;
-    height: 300px;
+    height: 200px;
 }
 
 
 
 .foodTruckGrid {
-    width: 370px;
-    border-radius: 10px;
+    width: 100%;
+    border-radius: 10px !important;
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     transition: 0.3s all linear;
     background-color: white;
+    min-height: 320px;
+}
+
+#dealsOftheDay .foodTruckGrid,
+#topRatedFoodTrucksScroll .foodTruckGrid {
+    width: 390px;
+    height: 330px;
+    border-radius: 10px !important;
+}
+
+#topRatedFoodTrucksScroll {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+    padding: 20px;
+}
+
+#dealsOftheDay .foodTruckGrid:hover,
+#topRatedFoodTrucksScroll .foodTruckGrid:hover {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 16px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+#dealsOftheDay,
+#topRatedFoodTrucksScroll {
+    padding-top: 20px;
 }
 
 .foodTruckGrid:hover {
     cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .foodTruckGrid .foodTruckImg {
@@ -158,6 +188,7 @@ header {
 
 .truckGridLocation p {
     font-size: 16px;
+    margin-top: 12px;
 }
 
 .truckGridLocation i {
@@ -946,4 +977,119 @@ header {
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         gap: 5px;
     }
+}
+
+.ratingReview {
+    display: inline-block;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+.ratingReview input {
+    display: none;
+}
+
+.ratingReview label {
+    display: inline-block;
+    padding: 5px;
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.ratingReview input:checked~label {
+    color: #ffcc00;
+}
+
+
+#locations {
+    position: relative;
+    display: inline-block;
+}
+
+#locations button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#locations input {
+    font-size: 25px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 100%;
+    padding: 16px;
+    text-align: center;
+    color: #333;
+    background-color: white;
+}
+
+#locationsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px;
+}
+
+#cusines {
+    position: relative;
+    display: inline-block;
+    height: 300px;
+    width: 100%;
+    background: linear-gradient(rgba(255, 255, 255, 0)60%, #040303cb), url(https://images.pexels.com/photos/1438672/pexels-photo-1438672.jpeg?auto=compress&cs=tinysrgb&w=600) no-repeat center center/cover;
+    border-radius: 25px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    transition: 0.7s all linear;
+    overflow: hidden;
+}
+
+#cusines:hover {
+    transition: 0.7s all linear;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(216, 122, 7, 0.702) 0px -2px 6px 0px inset;
+
+}
+
+#cusines button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#cusines input {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 38px;
+    padding: 5px 13px;
+    font-family: "Oleo Script", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    position: absolute;
+    bottom: 20px;
+    left: 13px;
+    margin-left: 10px;
+    letter-spacing: 2px;
+    border-left: 8px solid white;
+}
+
+
+@media screen and (max-width:900px) {
+
+    #dealsOftheDay .foodTruckGrid,
+    #topRatedFoodTrucksScroll .foodTruckGrid {
+        width: 340px !important;
+        height: 420px;
+    }
+
 }

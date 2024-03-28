@@ -16,126 +16,147 @@ router.get('/addFoodTruck', isAuth, dashboardController.getAddFoodTruck)
 // Get My Trucks
 router.get('/myTrucks', isAuth, dashboardController.getMyTrucks)
 
+// Get My Trucks
+router.post('/delete', isAuth, dashboardController.deleteTruck)
+
 // Edit Truck
 router.get('/editFoodTruck/:truckId', isAuth, dashboardController.getEditMyTruck)
 router.post('/postEditFoodTruck',
- [
-    body('name').custom((value => {
-        if (value === '') {
-            throw new Error('Please enter the name of your food truck')
-        }
-        return true;
-    })),
-    body('email').isEmail().withMessage('Please Enter A Valid Email'),
-    body('contactNumber').custom((value => {
-        if (value === '') {
-            throw new Error('Please enter the contact number of your food truck')
-        }
-        return true;
-    })),
-    body('priceForTwo').custom((value => {
-        if (value === '') {
-            throw new Error('Please enter price for two')
-        }
-     
-        return true;
-    })),
-    body('specialDishOne').custom((value => {
-        if (value === '') {
-            throw new Error('Please fill the special dish one field')
-        }
-        return true;
-    })),
-    body('specialDishTwo').custom((value => {
-        if (value === '') {
-            throw new Error('Please fill the special dish two field')
-        }
-        return true;
-    })),
-    body('specialDishThree').custom((value => {
-        if (value === '') {
-            throw new Error('Please fill the special dish three field')
-        }
-        return true;
-    })),
-    body('cusinesOffered').custom((value => {
-        if (value === '') {
-            throw new Error('Please enter the cusines offered')
-        }
-        return true;
-    })),
-    body('famousFor').custom((value => {
-        if (value === '') {
-            throw new Error('Please fill out the famous for field')
-        }
-        return true;
-    })),
-    body('description').custom((value => {
-        if (value === '') {
-            throw new Error('Please enter description about your food truck')
-        }
-        return true;
-    }))
-], isAuth, dashboardController.postEditMyTruck)
+    [
+        body('name').custom((value => {
+            if (value === '') {
+                throw new Error('Please enter the name of your food truck')
+            }
+            return true;
+        })),
+        body('imageUrl').custom((value => {
+            if (value === '') {
+                throw new Error('Please enter the Image URL of your food truck')
+            }
+            return true;
+        })),
+        body('address').custom((value => {
+            if (value === '') {
+                throw new Error('Please enter the address of your food truck')
+            }
+            return true;
+        })),
+        body('contactNumbers').custom((value => {
+            if (value === '') {
+                throw new Error('Please enter contact for two')
+            }
+            return true;
+        })),
+        body('email').isEmail().withMessage('Please Enter A Valid Email'),
+        body('priceForTwo').custom((value => {
+            if (value === '') {
+                throw new Error('Please enter price for two')
+            }
+
+            return true;
+        })),
+        body('specialDishOne').custom((value => {
+            if (value === '') {
+                throw new Error('Please fill the special dish one field')
+            }
+            return true;
+        })),
+        body('specialDishTwo').custom((value => {
+            if (value === '') {
+                throw new Error('Please fill the special dish two field')
+            }
+            return true;
+        })),
+        body('specialDishThree').custom((value => {
+            if (value === '') {
+                throw new Error('Please fill the special dish three field')
+            }
+            return true;
+        })),
+        body('cusinesOffered').custom((value => {
+            if (value === '') {
+                throw new Error('Please enter the cusines offered')
+            }
+            return true;
+        })),
+        body('famousFor').custom((value => {
+            if (value === '') {
+                throw new Error('Please fill out the famous for field')
+            }
+            return true;
+        })),
+        body('description').custom((value => {
+            if (value === '') {
+                throw new Error('Please enter description about your food truck')
+            }
+            return true;
+        }))
+    ], isAuth, dashboardController.postEditMyTruck)
 // Post Food Truck
 router.post('/addFoodTruck',
- [
-    body('name').custom((value => {
-        if (value === '') {
-            throw new Error('Please enter the name of your food truck')
-        }
-        return true;
-    })),
-    body('email').isEmail().withMessage('Please Enter A Valid Email'),
-    body('contactNumber').custom((value => {
-        if (value === '') {
-            throw new Error('Please enter the contact number of your food truck')
-        }
-        return true;
-    })),
-    body('priceForTwo').custom((value => {
-        if (value === '') {
-            throw new Error('Please enter price for two')
-        }
-     
-        return true;
-    })),
-    body('specialDishOne').custom((value => {
-        if (value === '') {
-            throw new Error('Please fill the special dish one field')
-        }
-        return true;
-    })),
-    body('specialDishTwo').custom((value => {
-        if (value === '') {
-            throw new Error('Please fill the special dish two field')
-        }
-        return true;
-    })),
-    body('specialDishThree').custom((value => {
-        if (value === '') {
-            throw new Error('Please fill the special dish three field')
-        }
-        return true;
-    })),
-    body('cusinesOffered').custom((value => {
-        if (value === '') {
-            throw new Error('Please enter the cusines offered')
-        }
-        return true;
-    })),
-    body('famousFor').custom((value => {
-        if (value === '') {
-            throw new Error('Please fill out the famous for field')
-        }
-        return true;
-    })),
-    body('description').custom((value => {
-        if (value === '') {
-            throw new Error('Please enter description about your food truck')
-        }
-        return true;
-    }))
-], isAuth, dashboardController.postAddFoodTruck)
+    [
+        body('name').custom((value => {
+            if (value === '') {
+                throw new Error('Please enter the name of your food truck')
+            }
+            return true;
+        })),
+        body('email').isEmail().withMessage('Please Enter A Valid Email'),
+        body('address').custom((value => {
+            if (value === '') {
+                throw new Error('Please enter the address of your food truck')
+            }
+            return true;
+        })),
+        body('imageUrl').custom((value => {
+            if (value === '') {
+                throw new Error('Please enter the Image URL of your food truck')
+            }
+            return true;
+        })),
+        body('priceForTwo').custom((value => {
+            if (value === '') {
+                throw new Error('Please enter price for two')
+            }
+
+            return true;
+        })),
+        body('specialDishOne').custom((value => {
+            if (value === '') {
+                throw new Error('Please fill the special dish one field')
+            }
+            return true;
+        })),
+        body('specialDishTwo').custom((value => {
+            if (value === '') {
+                throw new Error('Please fill the special dish two field')
+            }
+            return true;
+        })),
+        body('specialDishThree').custom((value => {
+            if (value === '') {
+                throw new Error('Please fill the special dish three field')
+            }
+            return true;
+        })),
+        body('cusinesOffered').custom((value => {
+            if (value === '') {
+                throw new Error('Please enter the cusines offered')
+            }
+            return true;
+        })),
+        body('famousFor').custom((value => {
+            if (value === '') {
+                throw new Error('Please fill out the famous for field')
+            }
+            return true;
+        })),
+        body('description').custom((value => {
+            if (value === '') {
+                throw new Error('Please enter description about your food truck')
+            }
+            return true;
+        }))
+    ], isAuth, dashboardController.postAddFoodTruck)
 
 exports.router = router;

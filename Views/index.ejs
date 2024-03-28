@@ -5,6 +5,7 @@
         <!-- Navbar -->
         <%- include('./homeIncludes/navbar.ejs') %>
 
+
             <!-- Header Container -->
             <div id="headerContainer">
 
@@ -14,7 +15,8 @@
                 <div>
                     <h1>Roaming Flavors: Explore Canada's Food Trucks</h1>
                     <!-- <h1>Explore the Delicious Diversity of Food Trucks</h1> -->
-                    <p>Embark on a Flavorful Journey Through Canada's Food Truck Scene. Taste, Explore, Indulge - Where
+                    <p>Embark on a Flavorful Journey Through Canada's Food Truck Scene. Taste, Explore, Indulge -
+                        Where
                         Every
                         Bite Tells a Story!</p>
                     <!-- <a class="btnTeal btn" href="">Explore Food Trucks</a>
@@ -25,12 +27,72 @@
             <!-- Search Bar -->
             <%- include('./homeIncludes/searchBar.ejs') %>
     </header>
+    <!-- Deals of the day -->
+    <%- include('./homeIncludes/dealsOfTheDay.ejs') %>
 
-    <!-- Top Rated Food Trucks -->
-    <%- include('./homeIncludes/topRatedFoodTrucks.ejs') %>
 
-        <!-- Deals of the day -->
-        <%- include('./homeIncludes/dealsOfTheDay.ejs') %>
+
+        <div style="background-color: white; padding: 20px 0;">
+            <section class="container">
+
+                <h1 style="margin-bottom: 20px;" class="heading">Find Food Truck's by Cusines</h1>
+                <form style=" height: 190px; margin-bottom: 10px;    background: linear-gradient(rgba(255, 255, 255, 0)10%, #040303cb), url(https://images.pexels.com/photos/2323391/pexels-photo-2323391.jpeg?auto=compress&cs=tinysrgb&w=600) no-repeat center center/cover;
+            " id="cusines" action="/search/Japanese">
+                    <input class="cusinesInput" type="text" value="Japanese" readonly>
+                    <button type="submit">.</button>
+                </form>
+                <article id="locationsContainer">
+                    <form id="cusines" action="/search/Italian" style="    background: linear-gradient(rgba(255, 255, 255, 0)60%, #040303cb), url(https://images.pexels.com/photos/1438672/pexels-photo-1438672.jpeg?auto=compress&cs=tinysrgb&w=600) no-repeat center center/cover;
+                        ">
+                        <input class="cusinesInput" type="text" value="Italian" readonly>
+                        <button type="submit">.</button>
+                    </form>
+                    <form style="    background: linear-gradient(rgba(255, 255, 255, 0)60%, #040303cb), url(https://images.pexels.com/photos/8448331/pexels-photo-8448331.jpeg?auto=compress&cs=tinysrgb&w=600) no-repeat center center/cover;
+                        " id="cusines" action="/search/Mexican">
+                        <input class="cusinesInput" type="text" value="Mexican" readonly>
+                        <button type="submit">.</button>
+                    </form>
+                    <form style="    background: linear-gradient(rgba(255, 255, 255, 0)60%, #040303cb), url(https://images.pexels.com/photos/2092906/pexels-photo-2092906.jpeg?auto=compress&cs=tinysrgb&w=600) no-repeat center center/cover;
+                        " id="cusines" action="/search/Chinese">
+                        <input class="cusinesInput" type="text" value="Chinese" readonly>
+                        <button type="submit">.</button>
+                    </form>
+                    <form style="    background: linear-gradient(rgba(255, 255, 255, 0)60%, #040303cb), url(https://images.pexels.com/photos/7625056/pexels-photo-7625056.jpeg?auto=compress&cs=tinysrgb&w=600) no-repeat center center/cover;
+                        " id="cusines" action="/search/Indian">
+                        <input class="cusinesInput" type="text" value="Indian" readonly>
+                        <button type="submit">.</button>
+                    </form>
+                    <form style="    background: linear-gradient(rgba(255, 255, 255, 0)60%, #040303cb), url(https://images.pexels.com/photos/1234535/pexels-photo-1234535.jpeg?auto=compress&cs=tinysrgb&w=600) no-repeat center center/cover;
+                        " id="cusines" action="/search/Thai">
+                        <input class="cusinesInput" type="text" value="Thai" readonly>
+                        <button type="submit">.</button>
+                    </form>
+                </article>
+
+            </section>
+        </div>
+        <div style="background-color: white; padding: 20px 0;">
+            <section class="container">
+
+                <h1 style="margin-bottom: 25px;" class="heading">Find Food Truck's in your city !</h1>
+
+                <article id="locationsContainer">
+                    <% var cities=["Toronto", "Montreal" , "Vancouver" , "Calgary" , "Edmonton" , "Ottawa" , "Winnipeg"
+                        , "Quebec City" , "Hamilton" , "London" , "Kitchener" , "Victoria" , "Halifax" , "Windsor"
+                        ,"Regina" , "St. John's" , "Cambridge" , "Brampton" , , "Guelph" , "Brantford" ]; %>
+                        <% cities.forEach(function(city) { %>
+                            <form id="locations" action="/search/<%= city %>">
+                                <input class="locationsInput" type="text" value="<%= city %>" readonly>
+                                <button type="submit">.</button>
+                            </form>
+                            <% }); %>
+                </article>
+
+            </section>
+        </div>
+        <!-- Top Rated Food Trucks -->
+        <%- include('./homeIncludes/topRatedFoodTrucks.ejs') %>
+
 
 
             <!-- Footer -->

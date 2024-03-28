@@ -3,12 +3,20 @@ const { validationResult } = require('express-validator');
 
 exports.getDashboard = (req, res, next) => {
     console.log('req.session.isLoggedIn:', req.session.isLoggedIn)
-    res.render('dashboard/dashboard', {
-        pageTitle: 'Dashboard',
-        url: '/dashboard'
-    })
-}
+    const userId = req.session.user._id;
 
+    FoodTruck.find({ userId: userId })
+        .then(truck => {
+            // console.log(truck);
+            const reversedTruck= truck.reverse();
+
+            return res.render('dashboard/dashboard', {
+                pageTitle: 'myTruck',
+                url: '/dashboard',
+                truck: reversedTruck.slice(0, 2)
+            })
+        })
+}
 
 exports.getAddFoodTruck = (req, res, next) => {
 
@@ -57,14 +65,15 @@ exports.getAddFoodTruck = (req, res, next) => {
         email: '',
         contactNumbers: '',
         bogoOn: ['Monday', 'Thursday'],
-        website: ''
+        website: '',
+        imageUrl: ''
     })
 }
 
 exports.postAddFoodTruck = (req, res, next) => {
     const errors = validationResult(req);
     const userId = req.session.user._id;
-    
+
     console.log(req.body);
     const name = req.body.name;
     const address = req.body.address;
@@ -119,6 +128,7 @@ exports.postAddFoodTruck = (req, res, next) => {
 
     const bogoOn = req.body.bogoOn;
     const website = req.body.website;
+    const imageUrl = req.body.imageUrl;
 
 
     if (!errors.isEmpty()) {
@@ -167,11 +177,12 @@ exports.postAddFoodTruck = (req, res, next) => {
             email: email,
             contactNumbers: contactNumbers,
             bogoOn: bogoOn,
-            website: website
+            website: website,
+            imageUrl: imageUrl
         })
     } else {
         const foodTruck = new FoodTruck({
-            userId:userId,
+            userId: userId,
             name: name,
             address: address,
             priceForTwo: priceForTwo,
@@ -241,15 +252,20 @@ exports.postAddFoodTruck = (req, res, next) => {
             contactNumbers: contactNumbers,
             images: [
                 {
-                    mainImage: '',
+                    mainImage: imageUrl,
                     menu: [],
                     gallery: [],
                     specialThreeDishes: []
                 }
             ],
-            website:website,
-            testimonials:[],
-            ratings:[]
+            website: website,
+            testimonials: [{
+                review: 'Hello Bussiness Owner, Welcome to taste on Wheels',
+                name: 'Taste On Wheels ',
+                rating: '3',
+                userId: ''
+            }],
+            rating: 0,
         })
 
 
@@ -278,9 +294,9 @@ exports.postTruckImages = (req, res, next) => {
 exports.getMyTrucks = (req, res, next) => {
     const userId = req.session.user._id;
 
-    FoodTruck.find({userId:userId})
+    FoodTruck.find({ userId: userId })
         .then(truck => {
-            console.log(truck);
+            // console.log(truck);
             return res.render('dashboard/myTrucks', {
                 pageTitle: 'myTruck',
                 url: '/myTrucks',
@@ -339,20 +355,25 @@ exports.getEditMyTruck = (req, res, next) => {
                 email: truck.email,
                 contactNumbers: truck.contactNumbers,
                 bogoOn: truck.bogoOn,
-                website: truck.website
+                website: truck.website,
+                imageUrl: truck.images[0].mainImage
+
             })
         })
         .catch(err => {
             console.log(err);
-            console.log('Truck not found');
+            console.log('Truck not found on get my truck');
             return res.redirect('/myTrucks')
         })
 
 }
 exports.postEditMyTruck = (req, res, next) => {
+
+    console.log("Request Body:", req.body);
+
     const truckId = req.body.truckId;
     const errors = validationResult(req);
-    1
+
     if (!errors.isEmpty()) {
         let className = 'errorFlash'
         return res.render('dashboard/addFoodTruck', {
@@ -399,80 +420,189 @@ exports.postEditMyTruck = (req, res, next) => {
             email: req.body.email,
             contactNumbers: req.body.contactNumbers,
             bogoOn: req.body.bogoOn,
-            website: req.body.website
+            website: req.body.website,
+            imageUrl: req.body.imageUrl
         })
-    } else {
-        FoodTruck.findById(truckId)
-            .then(truck => {
-                truck.name = req.body.name;
-                truck.address = req.body.address;
-                truck.priceForTwo = req.body.priceForTwo;
-
-                truck.openingHours[0].open = req.body.MondayStatus;
-                truck.openingHours[1].open = req.body.TuesdayStatus;
-                truck.openingHours[2].open = req.body.WednesdayStatus;
-                truck.openingHours[3].open = req.body.ThursdayStatus;
-                truck.openingHours[4].open = req.body.FridayStatus;
-                truck.openingHours[5].open = req.body.SaturdayStatus;
-                truck.openingHours[6].open = req.body.SundayStatus;
-
-                truck.openingHours[0].openingTime = req.body.openingTimeMonday;
-                truck.openingHours[0].closingTime = req.body.closingTimeMonday;
-
-                truck.openingHours[1].openingTime = req.body.openingTimeTuesday;
-                truck.openingHours[1].closingTime = req.body.closingTimeTuesday;
-
-                truck.openingHours[2].openingTime = req.body.openingTimeWednesday;
-                truck.openingHours[2].closingTime = req.body.closingTimeWednesday;
-
-                truck.openingHours[3].openingTime = req.body.openingTimeThursday;
-                truck.openingHours[3].closingTime = req.body.closingTimeThursday;
-
-                truck.openingHours[4].openingTime = req.body.openingTimeFriday;
-                truck.openingHours[4].closingTime = req.body.closingTimeFriday;
-
-                truck.openingHours[5].openingTime = req.body.openingTimeSaturday;
-                truck.openingHours[5].closingTime = req.body.closingTimeSaturday;
-
-                truck.openingHours[6].openingTime = req.body.openingTimeSunday;
-                truck.openingHours[6].closingTime = req.body.closingTimeSunday;
-
-                truck.cusinesOffered = req.body.cusinesOffered;
-
-                truck.specialDishOne = req.body.specialDishOne;
-                truck.specialDishTwo = req.body.specialDishTwo;
-                truck.specialDishThree = req.body.specialDishThree;
-
-                truck.famousFor = req.body.famousFor;
-                truck.description = req.body.description;
-                truck.year = req.body.year;
-                truck.discountToday = req.body.discountToday;
-
-                truck.customDiscount1 = req.body.customDiscount1;
-                truck.customDiscount2 = req.body.customDiscount2;
-                truck.customDiscount3 = req.body.customDiscount3;
-
-                truck.email = req.body.email;
-                truck.contactNumbers = req.body.contactNumbers;
-
-                truck.bogoOn = req.body.bogoOn;
-                truck.website = req.body.website;
-
-
-                truck.save()
-                    .then(result => {
-                        console.log(result);
-                        return res.redirect('/myTrucks');
-                    }).catch(err => {
-                        // console.log(err);
-                        console.log('Truck found but could not be updated');
-                        return res.redirect('/myTrucks');
-                    })
-            })
-            .catch(err => {
-                // console.log(err);
-                console.log('Truck could not be found for editing');
-                return res.redirect('/myTrucks')
-            })
     }
+
+    // console.log('Here is the body', req.body);
+    FoodTruck.findById(truckId)
+        .then(truck => {
+            console.log('Truck Found', truck)
+            truck.name = req.body.name;
+            truck.address = req.body.address;
+            truck.priceForTwo = req.body.priceForTwo;
+            let imagesArray = [
+                {
+                    mainImage: req.body.imageUrl,
+                    menu: [],
+                    gallery: [],
+                    specialThreeDishes: []
+                }
+            ]
+
+            truck.images = imagesArray;
+            let openingHours = [
+                {
+                    day: 'Monday',
+                    open: req.body.MondayStatus,
+                    openingTime: req.body.openingTimeMonday,
+                    closingTime: req.body.closingTimeMonday
+                },
+                {
+                    day: 'Tuesday',
+                    open: req.body.TuesdayStatus,
+                    openingTime: req.body.openingTimeTuesday,
+                    closingTime: req.body.closingTimeTuesday
+                },
+                {
+                    day: 'Wednesday',
+                    open: req.body.WednesdayStatus,
+                    openingTime: req.body.openingTimeWednesday,
+                    closingTime: req.body.closingTimeWednesday
+                },
+                {
+                    day: 'Thursday',
+                    open: req.body.ThursdayStatus,
+                    openingTime: req.body.openingTimeThursday,
+                    closingTime: req.body.closingTimeThursday
+                },
+                {
+                    day: 'Friday',
+                    open: req.body.FridayStatus,
+                    openingTime: req.body.openingTimeFriday,
+                    closingTime: req.body.closingTimeFriday
+                },
+                {
+                    day: 'Saturday',
+                    open: req.body.SaturdayStatus,
+                    openingTime: req.body.openingTimeSaturday,
+                    closingTime: req.body.closingTimeSaturday
+                },
+                {
+                    day: 'Sunday',
+                    open: req.body.SundayStatus,
+                    openingTime: req.body.openingTimeSunday,
+                    closingTime: req.body.closingTimeSunday
+                }]
+            truck.openingHours = openingHours;
+            truck.cusinesOffered = req.body.cusinesOffered;
+
+            truck.specialDishOne = req.body.specialDishOne;
+            truck.specialDishTwo = req.body.specialDishTwo;
+            truck.specialDishThree = req.body.specialDishThree;
+
+            truck.famousFor = req.body.famousFor;
+            truck.description = req.body.description;
+            truck.year = req.body.year;
+            truck.discountToday = req.body.discountToday;
+
+            truck.customDiscount1 = req.body.customDiscount1;
+            truck.customDiscount2 = req.body.customDiscount2;
+            truck.customDiscount3 = req.body.customDiscount3;
+
+            truck.email = req.body.email;
+            truck.contactNumbers = req.body.contactNumbers;
+
+            truck.bogoOn = req.body.bogoOn;
+            truck.website = req.body.website;
+            truck.save().then(result => {
+                return res.redirect('/myTrucks');
+            })
+                .catch(err => {
+                    console.log(err);
+                    return res.redirect('/myTrucks')
+                });
+        })
+
+
+    //     FoodTruck.findById(truckId)
+    //         .then(truck => {
+    //          
+    //             let imagesArray = [
+    //                 {
+    //                     mainImage: imageUrl,
+    //                     menu: [],
+    //                     gallery: [],
+    //                     specialThreeDishes: []
+    //                 }
+    //             ]
+    //             truck.images = imagesArray;
+
+    //             console.log('req.body.MondayStatus', req.body.MondayStatus)
+    //             truck.openingHours[0].open = req.body.MondayStatus;
+    //             truck.openingHours[1].open = req.body.TuesdayStatus;
+    //             truck.openingHours[2].open = req.body.WednesdayStatus;
+    //             truck.openingHours[3].open = req.body.ThursdayStatus;
+    //             truck.openingHours[4].open = req.body.FridayStatus;
+    //             truck.openingHours[5].open = req.body.SaturdayStatus;
+    //             truck.openingHours[6].open = req.body.SundayStatus;
+
+    //             truck.openingHours[0].openingTime = req.body.openingTimeMonday;
+    //             truck.openingHours[0].closingTime = req.body.closingTimeMonday;
+
+    //             truck.openingHours[1].openingTime = req.body.openingTimeTuesday;
+    //             truck.openingHours[1].closingTime = req.body.closingTimeTuesday;
+
+    //             truck.openingHours[2].openingTime = req.body.openingTimeWednesday;
+    //             truck.openingHours[2].closingTime = req.body.closingTimeWednesday;
+
+    //             truck.openingHours[3].openingTime = req.body.openingTimeThursday;
+    //             truck.openingHours[3].closingTime = req.body.closingTimeThursday;
+
+    //             truck.openingHours[4].openingTime = req.body.openingTimeFriday;
+    //             truck.openingHours[4].closingTime = req.body.closingTimeFriday;
+
+    //             truck.openingHours[5].openingTime = req.body.openingTimeSaturday;
+    //             truck.openingHours[5].closingTime = req.body.closingTimeSaturday;
+
+    //             truck.openingHours[6].openingTime = req.body.openingTimeSunday;
+    //             truck.openingHours[6].closingTime = req.body.closingTimeSunday;
+
+    //             truck.cusinesOffered = req.body.cusinesOffered;
+
+    //             truck.specialDishOne = req.body.specialDishOne;
+    //             truck.specialDishTwo = req.body.specialDishTwo;
+    //             truck.specialDishThree = req.body.specialDishThree;
+
+    //             truck.famousFor = req.body.famousFor;
+    //             truck.description = req.body.description;
+    //             truck.year = req.body.year;
+    //             truck.discountToday = req.body.discountToday;
+
+    //             truck.customDiscount1 = req.body.customDiscount1;
+    //             truck.customDiscount2 = req.body.customDiscount2;
+    //             truck.customDiscount3 = req.body.customDiscount3;
+
+    //             truck.email = req.body.email;
+    //             truck.contactNumbers = req.body.contactNumbers;
+
+    //             truck.bogoOn = req.body.bogoOn;
+    //             truck.website = req.body.website;
+
+
+    //             truck.save()
+    //                 .then(result => {
+    //                     console.log('Updated Truck', result);
+    //                     return res.redirect('/myTrucks');
+    //                 }).catch(err => {
+    //                     // console.log(err);
+    //                     console.log('Truck found but could not be updated');
+    //                     return res.redirect('/myTrucks');
+    //                 })
+    //         })
+    //         .catch(err => {
+    //             // console.log(err);
+    //             console.log('Truck could not be found for editing');
+    //             return res.redirect('/myTrucks')
+    //         })
+}
+
+
+exports.deleteTruck = (req, res, next) => {
+    const truckId = req.body.truckId;
+    FoodTruck.findByIdAndDelete(truckId)
+        .then(result => {
+            return res.redirect('/myTrucks');
+        })
 }

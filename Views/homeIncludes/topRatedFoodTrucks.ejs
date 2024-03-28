@@ -1,41 +1,51 @@
-<section style="background-color: white;"> 
-    <div class="container ">
+<section  style="background-color: white;" >
+    <div class="container " >
         <h1 class="heading">Our Top Rated Food Trucks</h1>
         <p class="headingDescription">Feast your eyes on our curated selection of Canada's finest food trucks! From
             savory delights to sweet treats, discover culinary adventures that tantalize your taste buds.</p>
         <br>
         <br>
-        <div class="grid">
-            <%truck.forEach(foodTruck=>{%>
+        <div id="topRatedFoodTrucksScroll" style="overflow: scroll;">
+            <%topRatedTrucks.forEach(foodTruck=>{%>
                 <a href="/foodTrucks/<%= foodTruck._id%>">
                     <div class="foodTruckGrid">
                         <!-- Truck Image -->
                         <div class="foodTruckImg">
-                            <img src="https://images.pexels.com/photos/2518078/pexels-photo-2518078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                            <img src="<%= foodTruck.images[0].mainImage%>"
                                 alt="">
                         </div>
                         <!-- Truck Content -->
                         <div class="foodTruckContent">
                             <div style="margin-top: 10px;" class="flexRow spaceBetween alignItemCenter">
-                                <h3 class="heading"><%= foodTruck.name%></h3>
-                                <p class="rating flexRow alignItemCenter"> <span>5</span> &nbsp; <i
+                                <h3 class="heading">
+                                    <%= foodTruck.name%>
+                                </h3>
+                                <p class="rating flexRow alignItemCenter"> <span><%= foodTruck.rating%></span> &nbsp; <i
                                         class="fa-solid fa-star"></i></p>
                             </div>
                             <div class="flexRow alignItemCenter truckGridLocation">
                                 <i class="fa-solid fa-location-dot"></i>
-                                <p><%=foodTruck.address%></p>
+                                <p>
+                                    <%=foodTruck.address%>
+                                </p>
                             </div>
-                            <div class="gridTags" style="font-size: 16px;">
-                            <p style="font-size: 12px; font-weight: 400; padding:10px 9px;"><%=foodTruck.threeSpecialDishes[0].dish%></p>
-                            <p style="font-size: 12px; font-weight: 400; padding:10px 9px"><%=foodTruck.threeSpecialDishes[1].dish%></p>
-                            <p style="font-size: 12px; font-weight: 400; padding:10px 9px"><%=foodTruck.threeSpecialDishes[2].dish%></p>
-                        </div>
+                            <!-- <div class="gridTags" style="font-size: 16px;">
+                                <p style="font-size: 12px; font-weight: 400; padding:10px 9px;">
+                                    <%=foodTruck.threeSpecialDishes[0].dish%>
+                                </p>
+                                <p style="font-size: 12px; font-weight: 400; padding:10px 9px">
+                                    <%=foodTruck.threeSpecialDishes[1].dish%>
+                                </p>
+                                <p style="font-size: 12px; font-weight: 400; padding:10px 9px">
+                                    <%=foodTruck.threeSpecialDishes[2].dish%>
+                                </p>
+                            </div> -->
                             <br>
                         </div>
                     </div>
                 </a>
                 <%})%>
-            
+
 
         </div>
     </div>
