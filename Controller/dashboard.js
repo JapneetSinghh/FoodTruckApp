@@ -304,6 +304,25 @@ exports.getMyTrucks = (req, res, next) => {
             })
         })
 }
+
+exports.getAllTrucks = (req, res, next) => {
+
+    const accountType = req.session.user.userType;
+    if(accountType==='admin'){
+        FoodTruck.find()
+        .then(truck => {
+            // console.log(truck);
+            return res.render('dashboard/myTrucks', {
+                pageTitle: 'myTruck',
+                url: '/allTrucks',
+                truck: truck
+            })
+        })
+    }else{
+        return(res.redirect('/'));
+    }
+}
+
 exports.getEditMyTruck = (req, res, next) => {
     const truckId = req.params.truckId;
     console.log(truckId)

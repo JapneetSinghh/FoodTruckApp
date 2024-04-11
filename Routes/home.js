@@ -11,6 +11,8 @@ router.post('/addReview',homeController.addReview);
 router.post('/search',homeController.postSearch);
 
 
+router.get('/about',homeController.getAbout);
+
 router.get('/search/:searchedText',homeController.getSearch);
 router.get('/search/',homeController.getSearch);
 

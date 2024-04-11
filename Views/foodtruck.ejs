@@ -24,7 +24,7 @@
                     </li>
                     <% console.log("User ID:", user._id); %>
                         <% console.log("Truck User ID:", truck.userId); %>
-                            <%if(user._id.toString()===truck.userId.toString()){%>
+                            <%if(user._id===truck.userId){%>
                                 <li><a id="logoutBtn" href="/editFoodTruck/<%=truck._id%>"><i
                                             class="fa-solid fa-pencil"></i> Edit</a></li>
                                 <%}%>

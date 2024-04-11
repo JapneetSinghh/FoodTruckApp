@@ -21,32 +21,32 @@ exports.getHomePage = (req, res, next) => {
     console.log('Welcome to home page');
     FoodTruck.find()
         .then(trucks => {
-            
+
             const bogoTrucks = trucks.filter(truck => truck.bogoOn && truck.bogoOn.length > 0);
-            
-            
+
+
             const sortedByRating = trucks.slice().sort((a, b) => b.rating - a.rating);
-            
-            
+
+
             const topRatedTrucks = sortedByRating.slice(0, Math.min(sortedByRating.length, 10));
 
-            
+
             const sortedByDiscount = trucks.slice().sort((a, b) => b.discountToday - a.discountToday);
-            
-            
+
+
             const topDiscountedTrucks = sortedByDiscount.slice(0, Math.min(sortedByDiscount.length, 10));
 
             return res.render('index', {
                 pageTitle: "Taste On Wheels",
-                truck: trucks, 
-                bogoTrucks: bogoTrucks, 
-                topRatedTrucks: topRatedTrucks, 
-                topDiscountedTrucks: topDiscountedTrucks 
+                truck: trucks,
+                bogoTrucks: bogoTrucks,
+                topRatedTrucks: topRatedTrucks,
+                topDiscountedTrucks: topDiscountedTrucks
             });
         })
         .catch(err => {
             console.error('Error fetching food trucks:', err);
-            
+
             next(err);
         });
 }
@@ -63,6 +63,12 @@ exports.getFoodTruck = (req, res, next) => {
             console.log('Truck Id Wrong, Truck not found');
             return res.redirect('/');
         })
+}
+
+exports.getAbout = (req, res, next) => {
+    return res.render('about', {
+        pageTitle: "About",
+    })
 }
 
 
@@ -111,11 +117,11 @@ exports.addReview = (req, res, next) => {
                     let lastIndex = 0;
                     savedTruck.testimonials.forEach((testimonial, index) => {
                         rating = rating + parseInt(testimonial.rating);
-                        lastIndex = index+1;
+                        lastIndex = index + 1;
                     })
                     console.log(rating);
                     console.log(lastIndex);
-                    
+
                     let newRating = (rating / lastIndex).toFixed(2);
                     console.log('Rating', newRating);
 

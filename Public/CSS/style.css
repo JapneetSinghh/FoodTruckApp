@@ -221,6 +221,13 @@ header {
     gap: 10px;
 }
 
+
+#gridTeam{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 10px; 
+}
+
 #searchBar {
     width: 100%;
     display: flex;

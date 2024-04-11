@@ -16,6 +16,9 @@ router.get('/addFoodTruck', isAuth, dashboardController.getAddFoodTruck)
 // Get My Trucks
 router.get('/myTrucks', isAuth, dashboardController.getMyTrucks)
 
+// Get all trucks
+router.get('/getAllTrucks', isAuth, dashboardController.getAllTrucks)
+
 // Get My Trucks
 router.post('/delete', isAuth, dashboardController.deleteTruck)
 
