@@ -72,7 +72,7 @@ const fileStorage = multer.diskStorage({
 
 // Setting up the ejs template engine
 app.set('view engine', 'ejs');
-app.set('views', 'Views')
+app.set('views', path.join(__dirname, 'Views'));
 
 // Importing the routers
 const homeRoutes = require('./Routes/home')
