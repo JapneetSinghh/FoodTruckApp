@@ -35,8 +35,6 @@ const User = require('./Model/users');
 // Importing Path
 const path = require('path');
 
-// Serving the public folder as static
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Importing Multer for uploading Images
 const multer = require('multer');
@@ -73,6 +71,9 @@ const fileStorage = multer.diskStorage({
 // Setting up the ejs template engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'Views'));
+
+// Serving the public folder as static
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Importing the routers
 const homeRoutes = require('./Routes/home')
