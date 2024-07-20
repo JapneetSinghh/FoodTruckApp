@@ -73,7 +73,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'Views'));
 
 // Serving the public folder as static
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'Public')));
 
 // Importing the routers
 const homeRoutes = require('./Routes/home')
