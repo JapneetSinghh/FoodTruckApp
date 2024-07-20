@@ -608,7 +608,7 @@ header {
 #getDirections {
     display: grid;
     place-items: center;
-    background: url(../img/directions.jpg) no-repeat center center/cover;
+    background: url(../IMG/directions.jpg) no-repeat center center/cover;
 }
 
 #foodTruckPageHeader>div {
